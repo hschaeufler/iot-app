@@ -5,20 +5,21 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include <DHT.h>
+#include <secrets.h>
 
 #define OFF "offline"
 #define ON "online"
 
 /* WiFi-Data */
-const char *ssid = "";
-const char *password = "";
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PW;
 WiFiMulti wifiMulti;
 
 /* MQTT-Data */
-const char *MQTTSERVER = "";
+const char *MQTTSERVER = MQTT_SERVER;
 int MQTTPORT = 1883;
-const char *mqttuser = "";
-const char *mqttpasswd = "";
+const char *mqttuser = MQTT_USER;
+const char *mqttpasswd = MQTT_PW;
 const char *mqttdevice = "MyNameIsUnqie12223333334"; // Please use a unique name here!
 const char *outTopic = "dasIsMeinTestTopic";
 
