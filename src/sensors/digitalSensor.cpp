@@ -15,5 +15,5 @@ bool DigitalSensor::isDetected()
 {
     int sensorVal = digitalRead(this->pin);
     bool isDetectedVal = sensorVal == HIGH ? true : false;
-    return isDetectedVal;
+    return !isDetectedVal;
 }
