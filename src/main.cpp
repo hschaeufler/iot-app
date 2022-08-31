@@ -6,6 +6,12 @@
 #include <ArduinoJson.h>
 #include <DHT.h>
 #include <secrets.h>
+#include <sensors/digitalSensor.hpp>
+#include <sensors/fireSensor.hpp>
+#include <sensors/smokeSensor.hpp>
+#include <sensors/waterSensor.hpp>
+#include <tojson/toJson.hpp>
+#include <mqtt/MQTTClient.hpp>
 
 #define OFF "offline"
 #define ON "online"
@@ -15,102 +21,24 @@ const char *ssid = WIFI_SSID;
 const char *password = WIFI_PW;
 WiFiMulti wifiMulti;
 
-/* MQTT-Data */
-const char *MQTTSERVER = MQTT_SERVER;
-int MQTTPORT = 1883;
-const char *mqttuser = MQTT_USER;
-const char *mqttpasswd = MQTT_PW;
-const char *mqttdevice = "MyNameIsUnqie12223333334"; // Please use a unique name here!
-const char *outTopic = "dasIsMeinTestTopic";
-
-/* Last will */
-const char *willTopic = "firealarm/status";
-const int willQoS = 2;
-const boolean willRetain = true;
-const char *willMessage = OFF;
-
-const char *statusMessage = ON;
-
-WiFiClient wifiClient;
-PubSubClient client(wifiClient);
+MQTTClient mqttClient;
 
 /* DHT11-Data (Connect to GPIO22 on ESP32) */
 #define DHTTYPE DHT11     // may be DHT11 or DHT22
-uint8_t DHTPin = 22;      // DHT11-Sensor connected to Pin 22
+uint8_t DHTPin = 23;      // DHT11-Sensor connected to Pin 22
 DHT dht(DHTPin, DHTTYPE); // Construct DHT Object for gathering data
 float Temperature;
 float Humidity;
 
-/* JSON-Document-Size for incoming JSON (object size may be increased for larger JSON files) */
-const int capacity = JSON_OBJECT_SIZE(6);
-
-/* Outgoing JSON Documents */
-DynamicJsonDocument doc(capacity);
+#define WATERLIMIT 50;
+int firePin = 0;
+int smokePin = 2;
+uint8_t waterPin = 32;
+FireSensor fireSensor(firePin);
+SmokeSensor smokeSensor(smokePin);
+WaterSensor waterSensor(waterPin);
 
 #define MSG_BUFFER_SIZE (256) // Define the message buffer max size
-char msg[MSG_BUFFER_SIZE];    // Define the message buffer
-
-/**
- * This function is called when a MQTT-Message arrives.
- */
-void mqtt_callback(char *topic, byte *payload, unsigned int length)
-{ // callback includes topic and payload ( from which (topic) the payload is comming)
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("]: ");
-
-  for (int i = 0; i < length; i++)
-  {
-    Serial.print((char)payload[i]);
-  }
-  Serial.println("");
-
-  // Create a JSON document on call stack
-  StaticJsonDocument<capacity> doc;
-  String jsonInput = String((char *)payload);
-
-  // try to deserialize JSON
-  DeserializationError err = deserializeJson(doc, jsonInput);
-
-  // if an error occurs, print it out
-  if (err)
-  {
-    Serial.print(F("deserializeJson() failed with code "));
-    Serial.println(err.c_str());
-    return;
-  }
-
-  // Read out a name from JSON content (assuming JSON doc: {"SensorType" : "SomeSensorType", "value" : 42})
-  const char *name = doc["SensorType"];
-  long value = doc["value"];
-  Serial.println(name);
-  Serial.println(value);
-}
-
-/**
- * This function is called from setup() and establishes a MQTT connection.
- */
-void initMqtt()
-{
-  client.setServer(MQTTSERVER, MQTTPORT);
-
-  // Set the callback-Function when new messages are received.
-  client.setCallback(mqtt_callback);
-
-  // connect and last will
-  client.connect(mqttdevice, mqttuser, mqttpasswd, willTopic, willQoS, willRetain, willMessage);
-  while (!client.connected())
-  {
-    Serial.print(".");
-    delay(500);
-  }
-
-  // Publish Status
-  client.publish(willTopic, statusMessage, true);
-
-  // subscribe to a certain topic
-  client.subscribe("myExampleTopicToSubscribeTo");
-}
 
 /**
  * This function is called from setup() and establishes a WLAN connection
@@ -144,9 +72,6 @@ void setup()
   // Connect to WLAN
   initWifi();
 
-  // Connect to MQTT server
-  initMqtt();
-
   // Start DHT stuff
   pinMode(DHTPin, INPUT); // Set DHT-Pin to INPUT-Mode (so we can read data from it)
   dht.begin();
@@ -157,41 +82,64 @@ void setup()
 }
 
 /**
- * This function is called prior to sending data to mqtt.
- * The JSON document gets cleared first (to free memory and
- * avoid memory leaks), then sensor name, timestamp and
- * measured values (humidity and temperature) are set to
- * the JSON document.
- */
-void setJSONData(float humidity, float temp)
-{
-  doc.clear();
-  doc["sensor"] = "DHT11";
-  doc["humidity"] = humidity;
-  doc["temperature"] = temp;
-}
-
-/**
  * This function is the main function and loops forever.
  */
 void loop()
 {
-  // loop the mqtt client so it can maintain its connection and send and receive messages
-  client.loop();
+  Serial.println("Loop started!");
+  mqttClient.loop();
 
+  Serial.println("Init Vars!");
+  char const *sensorName;
+  char const *topicName;
+  char const *baseTopic = "homeprotect";
+
+  Serial.println("rEad Temp!");
   // receive measured values from DHT11
-  Temperature = dht.readTemperature(); // Gets the values of the temperature
-  Humidity = dht.readHumidity();       // Gets the values of the humidity
+  Temperature = dht.readTemperature();
+  sensorName = "temp";
+  topicName = "homeprotect/temp";
+  Serial.println("Publish Temp!");
+  mqttClient.publishSensor(sensorName, topicName, Temperature);
 
-  // set measured data to preprared JSON document
-  setJSONData(Humidity, Temperature);
+  Serial.println("read humidty!");
+  Humidity = dht.readHumidity();
+  sensorName = "humidty";
+  topicName = "homeprotect/humidity";
+  Serial.println("Publish humidity!");
+  mqttClient.publishSensor(sensorName, baseTopic, Humidity);
 
-  // serialize JSON document to a string representation
-  serializeJsonPretty(doc, msg);
+  Serial.println("read fire!");
+  bool isFire = fireSensor.isFire();
+  sensorName = "fire";
+  topicName = "homeprotect/fire";
+  mqttClient.publishSensor(sensorName, baseTopic, isFire);
 
-  // publish to MQTT broker
-  client.publish(outTopic, msg);
-  client.loop();
+  Serial.println("read smoke!");
+  bool isSmokey = smokeSensor.isSmokey();
+  sensorName = "smoke";
+  topicName = "homeprotect/smoke";
+  mqttClient.publishSensor(sensorName, baseTopic, isSmokey);
+
+  Serial.println("read water!");
+  uint16_t water = waterSensor.detectWater();
+  sensorName = "water";
+  topicName = "homeprotect/water";
+  mqttClient.publishSensor(sensorName, baseTopic, water);
+
+  Serial.println("read isWater!");
+  int limt = WATERLIMIT;
+  bool isWater = waterSensor.isWater(limt);
+  sensorName = "iswater";
+  topicName = "homeprotect/iswater";
+  mqttClient.publishSensor(sensorName, baseTopic, isWater);
+
+  Serial.println("publish full!");
+  sensorName = "homeprotect";
+  mqttClient.publishFullSensor(sensorName, sensorName, Humidity, Temperature, isFire, isSmokey, isWater, water);
+
+  Serial.println("loop!!");
+  mqttClient.loop();
 
   // wait a second before the next loop.
   delay(1000);

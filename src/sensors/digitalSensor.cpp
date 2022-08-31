@@ -3,7 +3,8 @@
 
 DigitalSensor::DigitalSensor(int pin)
 {
-    pin = pin;
+    this->pin = pin;
+    pinMode(pin, INPUT);
 }
 
 DigitalSensor::~DigitalSensor()
@@ -12,7 +13,7 @@ DigitalSensor::~DigitalSensor()
 
 bool DigitalSensor::isDetected()
 {
-    int sensorVal = digitalRead(pin);
-    bool isDetectedVal = sensorVal == 1 ? true : false;
+    int sensorVal = digitalRead(this->pin);
+    bool isDetectedVal = sensorVal == HIGH ? true : false;
     return isDetectedVal;
 }
