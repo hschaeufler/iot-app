@@ -64,21 +64,6 @@ char msg[MSG_BUFFER_SIZE];    // Define the message buffer
  * This function is called from setup() and establishes a WLAN connection
  */
 
-/**
- * This function is called prior to sending data to mqtt.
- * The JSON document gets cleared first (to free memory and
- * avoid memory leaks), then sensor name, timestamp and
- * measured values (humidity and temperature) are set to
- * the JSON document.
- */
-void setJSONData(float humidity, float temp)
-{
-  doc.clear();
-  doc["sensor"] = "DHT11";
-  doc["humidity"] = humidity;
-  doc["temperature"] = temp;
-}
-
 void initWifi()
 {
 
