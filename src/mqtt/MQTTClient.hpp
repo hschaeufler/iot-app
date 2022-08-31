@@ -9,7 +9,7 @@
 class MQTTClient
 {
 private:
-    PubSubClient mqttClient;
+    PubSubClient pubSubClient;
     /* MQTT-Data */
     const char *MQTTSERVER = MQTT_SERVER;
     int MQTTPORT = 1883;

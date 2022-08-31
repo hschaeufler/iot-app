@@ -21,8 +21,6 @@ const char *ssid = WIFI_SSID;
 const char *password = WIFI_PW;
 WiFiMulti wifiMulti;
 
-MQTTClient mqttClient;
-
 /* DHT11-Data (Connect to GPIO22 on ESP32) */
 #define DHTTYPE DHT11     // may be DHT11 or DHT22
 uint8_t DHTPin = 23;      // DHT11-Sensor connected to Pin 22
@@ -37,8 +35,6 @@ uint8_t waterPin = 32;
 FireSensor fireSensor(firePin);
 SmokeSensor smokeSensor(smokePin);
 WaterSensor waterSensor(waterPin);
-
-#define MSG_BUFFER_SIZE (256) // Define the message buffer max size
 
 /**
  * This function is called from setup() and establishes a WLAN connection
@@ -86,6 +82,8 @@ void setup()
  */
 void loop()
 {
+
+  MQTTClient mqttClient;
   Serial.println("Loop started!");
   mqttClient.loop();
 
