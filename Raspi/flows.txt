@@ -1,0 +1,608 @@
+[
+    {
+        "id": "c5af555cfbde6dfb",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f71581543a6f37b1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "141.72.16.244",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "nodered/connected",
+        "birthQos": "2",
+        "birthRetain": "true",
+        "birthPayload": "true",
+        "birthMsg": {},
+        "closeTopic": "nodered/connected",
+        "closeQos": "2",
+        "closeRetain": "true",
+        "closePayload": "false",
+        "closeMsg": {},
+        "willTopic": "nodered/connected",
+        "willQos": "2",
+        "willRetain": "true",
+        "willPayload": "false",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fc1519c342e2f5a6",
+        "type": "chatbot-telegram-node",
+        "botname": "IoT_123456_bot",
+        "usernames": "",
+        "polling": "1000",
+        "store": "",
+        "log": "",
+        "debug": true,
+        "skipMediaFiles": false,
+        "webHook": "",
+        "connectMode": "polling",
+        "storeMessages": true,
+        "enableMissionControl": false,
+        "inspectMessages": true,
+        "chatbotId": ""
+    },
+    {
+        "id": "2180145b1b3b9aca",
+        "type": "hue-bridge",
+        "name": "Philips hue",
+        "bridge": "141.72.16.185",
+        "key": "8CeppMza2A0iT7d01HpxcNCRIeikv7rUtcv8j2XE",
+        "worker": "10",
+        "autoupdates": true,
+        "disableupdates": false
+    },
+    {
+        "id": "283bf163ede29e06",
+        "type": "mqtt in",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f71581543a6f37b1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "d02d538b4b7d72ce",
+                "2bf57a206bbdbba0"
+            ]
+        ]
+    },
+    {
+        "id": "8b280e6c160f883b",
+        "type": "chatbot-telegram-send",
+        "z": "c5af555cfbde6dfb",
+        "bot": "fc1519c342e2f5a6",
+        "botProduction": "fc1519c342e2f5a6",
+        "track": false,
+        "passThrough": false,
+        "errorOutput": false,
+        "outputs": 0,
+        "x": 890,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d73382d59d6e8c0a",
+        "type": "chatbot-telegram-receive",
+        "z": "c5af555cfbde6dfb",
+        "bot": "fc1519c342e2f5a6",
+        "botProduction": "fc1519c342e2f5a6",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "dc4228c9f1be1526"
+            ]
+        ]
+    },
+    {
+        "id": "e1e5e052d674b5ba",
+        "type": "chatbot-message",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "message": [
+            {
+                "message": "You have sucesfully subscribed to Fire, Smoke and Water warnings!"
+            }
+        ],
+        "language": "none",
+        "x": 690,
+        "y": 380,
+        "wires": [
+            [
+                "8b280e6c160f883b"
+            ]
+        ]
+    },
+    {
+        "id": "fa13e0a2536cd932",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "Save chatId globally",
+        "func": "//node.error(\"content of global var: \" + global.get(\"chatIds\"));\nif (global.get(\"chatIds\") != undefined) {\n    if (msg.payload.content == \"/start\" && !(global.get(\"chatIds\").includes(msg.payload.chatId.toString()))) {\n        global.set(\"chatIds\", msg.payload.chatId.toString() + \",\" + global.get(\"chatIds\"));\n    }\n} else {\n    global.set(\"chatIds\", msg.payload.chatId.toString());\n}\nmsg.payload = global.get(\"chatIds\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 500,
+        "wires": [
+            [
+                "26ad9a1b2a0d9593"
+            ]
+        ]
+    },
+    {
+        "id": "b769da2c78792e8a",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "Send all MQTT messages to Telegram Bot",
+        "func": "if (global.get(\"chatIds\") != undefined) {\n    let chatIds = global.get(\"chatIds\").split(\",\");\n    let msgs = [];\n    for (let index = 0; index < chatIds.length; index++) {\n\n        msgs.push(\n            {\"payload\": {\n                \"chatId\": chatIds[index],\n                \"content\": \"topic: \" + msg.topic + \"\\nmessage: \" + JSON.stringify(msg.payload),\n                \"type\": \"message\"\n                }\n            }\n        )    \n    }\n    return msgs;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "74702d49fa459683"
+            ]
+        ]
+    },
+    {
+        "id": "74702d49fa459683",
+        "type": "chatbot-conversation",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "botDevelopment": "fc1519c342e2f5a6",
+        "botProduction": "fc1519c342e2f5a6",
+        "chatId": "",
+        "userId": "",
+        "transport": "telegram",
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "8b280e6c160f883b"
+            ]
+        ]
+    },
+    {
+        "id": "d02f8e45f8b06589",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 270,
+        "y": 60,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    },
+    {
+        "id": "f80663d73fe61f01",
+        "type": "hue-light",
+        "z": "c5af555cfbde6dfb",
+        "name": "Hue iris 1",
+        "bridge": "2180145b1b3b9aca",
+        "lightid": "fb847190-f833-4c33-b983-1493694f8d15",
+        "colornamer": true,
+        "skipevents": false,
+        "initevents": false,
+        "x": 580,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7b77ec1d56a425f",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    },
+    {
+        "id": "bbb6182a218a431d",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "toggle",
+        "props": [
+            {
+                "p": "payload.toggle",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    },
+    {
+        "id": "9c6199d05d64999c",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "colorloop",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"colorloop\": 20}",
+        "payloadType": "json",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    },
+    {
+        "id": "cadb545a5d0b0c8b",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "alert",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "type",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"alert\": 20}",
+        "payloadType": "json",
+        "x": 610,
+        "y": 40,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    },
+    {
+        "id": "26ad9a1b2a0d9593",
+        "type": "file",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "filename": "/data/telegramClients.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 550,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "773896259aee58fb",
+        "type": "inject",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "56e0a3acdf83b3f2"
+            ]
+        ]
+    },
+    {
+        "id": "56e0a3acdf83b3f2",
+        "type": "file in",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "filename": "/data/telegramClients.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 410,
+        "y": 620,
+        "wires": [
+            [
+                "fe31c6131e9a6ccb"
+            ]
+        ]
+    },
+    {
+        "id": "fe31c6131e9a6ccb",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "function 1",
+        "func": "global.set(\"chatIds\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc4228c9f1be1526",
+        "type": "switch",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "property": "payload.content",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/stop",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "e1e5e052d674b5ba",
+                "fa13e0a2536cd932"
+            ],
+            [
+                "913499a3c9350e1d",
+                "d5791e67c93dc3c7"
+            ],
+            [
+                "5bcf3f2343e144aa"
+            ]
+        ]
+    },
+    {
+        "id": "913499a3c9350e1d",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "delete chatId globally",
+        "func": "//node.error(\"content of global var: \" + global.get(\"chatIds\"));\nif (global.get(\"chatIds\") != undefined) {\n    if (global.get(\"chatIds\").includes(msg.payload.chatId.toString())) {\n        let chatIds = global.get(\"chatIds\").split(\",\");\n        let new_chatIds = [];\n        for (let idx = 0; idx < chatIds.length; idx++) {\n            if (chatIds[idx] != msg.payload.chatId.toString()) {\n                new_chatIds.push(chatIds[idx])\n            }\n        }\n        global.set(\"chatIds\", \"\");\n        for (let idx = 0; idx < new_chatIds.length; idx++) {\n            global.set(\"chatIds\", new_chatIds[idx].toString() + \",\" + global.get(\"chatIds\"));\n        }\n    }\n}\nmsg.payload = global.get(\"chatIds\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "26ad9a1b2a0d9593"
+            ]
+        ]
+    },
+    {
+        "id": "d5791e67c93dc3c7",
+        "type": "chatbot-message",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "message": [
+            {
+                "message": "You have sucesfully unsubscribed from all warnings!"
+            }
+        ],
+        "language": "none",
+        "x": 690,
+        "y": 420,
+        "wires": [
+            [
+                "8b280e6c160f883b"
+            ]
+        ]
+    },
+    {
+        "id": "d02d538b4b7d72ce",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "function 2",
+        "func": "if (msg.topic == \"homeprotect\") {\n    global.set(\"temp\", msg.payload.temperature);\n    global.set(\"hum\", msg.payload.humidity);\n    global.set(\"isFire\", msg.payload.isFire);\n    global.set(\"isSmoke\", msg.payload.isSmoke);\n    global.set(\"water\", msg.payload.water);\n    global.set(\"isWater\", msg.payload.isWater);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d0ce4fcf0e9fb830",
+        "type": "chatbot-message",
+        "z": "c5af555cfbde6dfb",
+        "name": "",
+        "message": [
+            {
+                "message": "Temperature: {{payload.temp}}\nHumidity: {{payload.hum}}\nFeueralarm: {{payload.isFire}}\nRauchalarm: {{payload.isSmoke}}\nWasser: {{payload.water}}\nWasseralarm: {{payload.isWater}}\n"
+            }
+        ],
+        "language": "none",
+        "x": 690,
+        "y": 460,
+        "wires": [
+            [
+                "8b280e6c160f883b"
+            ]
+        ]
+    },
+    {
+        "id": "5bcf3f2343e144aa",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "function 3",
+        "func": "msg.payload.temp = global.get(\"temp\");\nmsg.payload.hum = global.get(\"hum\");\nmsg.payload.isFire = global.get(\"isFire\");\nmsg.payload.isSmoke = global.get(\"isSmoke\");\nmsg.payload.water = global.get(\"water\");\nmsg.payload.isWater = global.get(\"isWater\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "d0ce4fcf0e9fb830"
+            ]
+        ]
+    },
+    {
+        "id": "2bf57a206bbdbba0",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "function 4",
+        "func": "if (msg.topic == \"homeprotect\") {\n    let chatIds = global.get(\"chatIds\").split(\",\");\n    for (let idx = 0; idx < chatIds.length; idx++) {\n        if (msg.payload.isFire == true) {\n            node.send({\n                \"payload\": {\n                    \"chatId\": chatIds[idx],\n                    \"content\": \"FEUERALARM!!!\",\n                    \"type\": \"message\"\n                }\n            })\n        }\n        if (msg.payload.isSmoke == true) {\n            node.send({\n                \"payload\": {\n                    \"chatId\": chatIds[idx],\n                    \"content\": \"RAUCHALARM!!!\",\n                    \"type\": \"message\"\n                }\n            })\n        }\n        if (msg.payload.isWater == true) {\n            node.send({\n                \"payload\": {\n                    \"chatId\": chatIds[idx],\n                    \"content\": \"ÜBERFLUTUNG!!!\",\n                    \"type\": \"message\"\n                }\n            })\n        }\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 340,
+        "wires": [
+            [
+                "74702d49fa459683",
+                "fd4b60c3e3347f7a"
+            ]
+        ]
+    },
+    {
+        "id": "fd4b60c3e3347f7a",
+        "type": "function",
+        "z": "c5af555cfbde6dfb",
+        "name": "function 5",
+        "func": "msg.payload = { \"colorloop\": 20 };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "f80663d73fe61f01"
+            ]
+        ]
+    }
+]
