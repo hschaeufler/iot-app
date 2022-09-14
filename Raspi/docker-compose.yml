@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  nodered:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - "1880:1880/tcp"
+      #- '1942:1942'
+      #- '1943:1943'
+    # Volumes store your data between container upgrades
+    volumes:
+      - '/home/pi/nodered-data:/data'   
+    restart: unless-stopped
+    #user: "1000"
+    
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+
+    ports:
+      - "1883:1883/tcp"
+      - "1883:1883/udp"
+      - "9001:9001/tcp"
+      - "9001:9001/udp"
+    volumes:
+      - '/home/pi/mosquitto-data/config:/mosquitto/config'
+    restart: unless-stopped
