@@ -9,10 +9,31 @@
 #include <sensors/fireSensor.hpp>
 #include <sensors/smokeSensor.hpp>
 #include <sensors/waterSensor.hpp>
+#include <actuators/TrafficLight.hpp>
 #include <PubSubClient.h>
+
+#define REDPIN 16
+#define YELLOWPIN 17
+#define GREENPIN 18
+#define DHTPIN 23
+#define FIREPIN 0
+#define SMOKEPIN 2
+#define WATERPIN 32
 
 #define OFF "offline"
 #define ON "online"
+
+#define DHTTYPE DHT11
+
+#define WATERLIMIT 50
+
+#define MSG_BUFFER_SIZE (256) // Define the message buffer max size
+
+FireSensor fireSensor(FIREPIN);
+SmokeSensor smokeSensor(SMOKEPIN);
+WaterSensor waterSensor(WATERPIN);
+TrafficLight trafficLight(REDPIN, YELLOWPIN, GREENPIN);
+DHT dht(DHTPIN, DHTTYPE);
 
 /* MQTT-Data */
 const char *MQTTSERVER = MQTT_SERVER;
@@ -33,32 +54,15 @@ const char *statusMessage = ON;
 /* WiFi-Data */
 const char *ssid = WIFI_SSID;
 const char *password = WIFI_PW;
+
 WiFiMulti wifiMulti;
-
-/* DHT11-Data (Connect to GPIO22 on ESP32) */
-#define DHTTYPE DHT11     // may be DHT11 or DHT22
-uint8_t DHTPin = 23;      // DHT11-Sensor connected to Pin 22
-DHT dht(DHTPin, DHTTYPE); // Construct DHT Object for gathering data
-float Temperature;
-float Humidity;
-
-#define WATERLIMIT 50;
-int firePin = 0;
-int smokePin = 2;
-uint8_t waterPin = 32;
-FireSensor fireSensor(firePin);
-SmokeSensor smokeSensor(smokePin);
-WaterSensor waterSensor(waterPin);
-
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
 /* JSON-Document-Size for outgoing JSON (object size may be increased for larger JSON files) */
 const int capacity = JSON_OBJECT_SIZE(10);
 DynamicJsonDocument doc(capacity);
-
-#define MSG_BUFFER_SIZE (256) // Define the message buffer max size
-char msg[MSG_BUFFER_SIZE];    // Define the message buffer
+char msg[MSG_BUFFER_SIZE]; // Define the message buffer
 
 /**
  * This function is called from setup() and establishes a WLAN connection
@@ -67,8 +71,8 @@ char msg[MSG_BUFFER_SIZE];    // Define the message buffer
 void initWifi()
 {
 
-  IPAddress local_IP(141, 72, 16, 245);
-  IPAddress gateway(141, 72, 16, 1);
+  IPAddress local_IP(192, 168, 178, 95);
+  IPAddress gateway(192, 168, 178, 1);
   IPAddress subnet(255, 255, 255, 0);
   IPAddress primaryDNS(8, 8, 8, 8);
   IPAddress secondaryDNS(8, 8, 4, 4);
@@ -117,6 +121,9 @@ void setup()
   // Set serial port speed to 115200 Baud
   Serial.begin(115200);
 
+  // Init TrafficLight
+  trafficLight.setYellow();
+
   // Connect to WLAN
   initWifi();
 
@@ -124,8 +131,10 @@ void setup()
   initMqtt();
 
   // Start DHT stuff
-  pinMode(DHTPin, INPUT); // Set DHT-Pin to INPUT-Mode (so we can read data from it)
+  pinMode(DHTPIN, INPUT); // Set DHT-Pin to INPUT-Mode (so we can read data from it)
   dht.begin();
+
+  trafficLight.setGreen();
 
   // Print to console
   Serial.println("Setup completed.");
@@ -155,22 +164,31 @@ void loop()
 
   Serial.println("Init Vars");
   char const *sensorName;
-  char const *topicName;
-  char const *baseTopic = "homeprotect";
 
   Serial.println("Read Sensors");
 
-  Temperature = dht.readTemperature();
-  Humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
   bool isFire = fireSensor.isFire();
   bool isSmokey = smokeSensor.isSmokey();
   uint16_t water = waterSensor.detectWater();
   int limt = WATERLIMIT;
   bool isWater = waterSensor.isWater(limt);
 
+  bool isAlarm = isFire || isWater || isSmokey;
+
+  if (isAlarm)
+  {
+    trafficLight.setRed();
+  }
+  else
+  {
+    trafficLight.setGreen();
+  }
+
   Serial.println("Build JSON");
   sensorName = "homeprotect";
-  setJSONData(sensorName, Humidity, Temperature, isFire, isSmokey, isWater, water);
+  setJSONData(sensorName, humidity, temperature, isFire, isSmokey, isWater, water);
 
   // serialize JSON document to a string representation
   serializeJsonPretty(doc, msg);
@@ -180,5 +198,7 @@ void loop()
   // publish to MQTT broker
   client.publish(outTopic, msg);
   Serial.println("Going to sleep!");
+  tone(11, 255, 500);
+
   delay(2000);
 }
