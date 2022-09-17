@@ -4,11 +4,13 @@
 #include <WiFiMulti.h>
 #include <ArduinoJson.h>
 #include <DHT.h>
-#include <secrets.h>
+#include <config/secrets.h>
+#include <config/wlan.h>
 #include <sensors/digitalSensor.hpp>
 #include <sensors/fireSensor.hpp>
 #include <sensors/smokeSensor.hpp>
 #include <sensors/waterSensor.hpp>
+#include <actuators/Buzzer.hpp>
 #include <actuators/TrafficLight.hpp>
 #include <PubSubClient.h>
 
@@ -19,9 +21,12 @@
 #define FIREPIN 0
 #define SMOKEPIN 2
 #define WATERPIN 32
+#define BUZZERPIN 12
 
 #define OFF "offline"
 #define ON "online"
+
+#define SENSORNAME "homeprotect"
 
 #define DHTTYPE DHT11
 
@@ -29,21 +34,21 @@
 
 #define MSG_BUFFER_SIZE (256) // Define the message buffer max size
 
+// Initialize Sensors
 FireSensor fireSensor(FIREPIN);
 SmokeSensor smokeSensor(SMOKEPIN);
 WaterSensor waterSensor(WATERPIN);
-TrafficLight trafficLight(REDPIN, YELLOWPIN, GREENPIN);
 DHT dht(DHTPIN, DHTTYPE);
 
-/* MQTT-Data */
-const char *MQTTSERVER = MQTT_SERVER;
-int MQTTPORT = 1883;
-const char *mqttuser = MQTT_USER;
-const char *mqttpasswd = MQTT_PW;
-const char *mqttdevice = "homeprotect"; // Please use a unique name here!
-const char *outTopic = "homeprotect";
+// Initalize Actuators
+Buzzer buzzer(BUZZERPIN);
+TrafficLight trafficLight(REDPIN, YELLOWPIN, GREENPIN);
 
-/* Last will */
+/* MQTT-Data */
+const char *mqttdevice = SENSORNAME;
+const char *outTopic = SENSORNAME;
+
+/* MQTT-Last will */
 const char *willTopic = "homeprotect/status";
 const int willQoS = 2;
 const boolean willRetain = true;
@@ -71,15 +76,24 @@ char msg[MSG_BUFFER_SIZE]; // Define the message buffer
 void initWifi()
 {
 
-  IPAddress local_IP(192, 168, 178, 95);
-  IPAddress gateway(192, 168, 178, 1);
-  IPAddress subnet(255, 255, 255, 0);
-  IPAddress primaryDNS(8, 8, 8, 8);
-  IPAddress secondaryDNS(8, 8, 4, 4);
-
-  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS))
+  if (!USE_DHCP)
   {
-    Serial.println("STA Failed to configure");
+    IPAddress local_IP;
+    IPAddress gateway;
+    IPAddress subnet;
+    IPAddress primaryDNS;
+    IPAddress secondaryDNS;
+
+    local_IP.fromString(LOCAL_IP);
+    gateway.fromString(GATEWAY_IP);
+    subnet.fromString(SUBNET_ADDR);
+    primaryDNS.fromString(PRIMARY_DNS);
+    secondaryDNS.fromString(SECONDARY_DNS);
+
+    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS))
+    {
+      Serial.println("STA Failed to configure");
+    }
   }
 
   Serial.println("Connecting to WiFi ...");
@@ -99,10 +113,10 @@ void initWifi()
 
 void initMqtt()
 {
-  client.setServer(MQTTSERVER, MQTTPORT);
+  client.setServer(MQTT_SERVER, MQTT_PORT);
 
   // connect and last will
-  client.connect(mqttdevice, mqttuser, mqttpasswd, willTopic, willQoS, willRetain, willMessage);
+  client.connect(mqttdevice, MQTT_USER, MQTT_PW, willTopic, willQoS, willRetain, willMessage);
   while (!client.connected())
   {
     Serial.print(".");
@@ -131,14 +145,15 @@ void setup()
   initMqtt();
 
   // Start DHT stuff
-  pinMode(DHTPIN, INPUT); // Set DHT-Pin to INPUT-Mode (so we can read data from it)
+  pinMode(DHTPIN, INPUT);
   dht.begin();
 
+  // set TraffigLight to Green
   trafficLight.setGreen();
 
   // Print to console
   Serial.println("Setup completed.");
-  delay(2000);
+  delay(1000);
 }
 
 void setJSONData(const char *sensorName, float humidity, float temp, bool isFire, bool isSmoke, bool isWater, uint16_t water)
@@ -160,13 +175,8 @@ void loop()
 {
   Serial.println("-----------------------------------------------");
   Serial.println("Loop started");
-  // mqttClient.loop();
-
-  Serial.println("Init Vars");
-  char const *sensorName;
 
   Serial.println("Read Sensors");
-
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
   bool isFire = fireSensor.isFire();
@@ -180,15 +190,16 @@ void loop()
   if (isAlarm)
   {
     trafficLight.setRed();
+    buzzer.startBeep();
   }
   else
   {
     trafficLight.setGreen();
+    buzzer.stopBeep();
   }
 
   Serial.println("Build JSON");
-  sensorName = "homeprotect";
-  setJSONData(sensorName, humidity, temperature, isFire, isSmokey, isWater, water);
+  setJSONData(SENSORNAME, humidity, temperature, isFire, isSmokey, isWater, water);
 
   // serialize JSON document to a string representation
   serializeJsonPretty(doc, msg);
@@ -198,7 +209,6 @@ void loop()
   // publish to MQTT broker
   client.publish(outTopic, msg);
   Serial.println("Going to sleep!");
-  tone(11, 255, 500);
 
-  delay(2000);
+  delay(1000);
 }
