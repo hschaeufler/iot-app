@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="13.40" multi-file="no" uid="simp7acc612d5f7547f99093ac93d791e9a7">
+  <meta>
+    <name>Sensor Subsystem</name>
+    <authors>Kilian Kriesten</authors>
+    <description />
+  </meta>
+  <counters models="2">
+    <entity-names />
+    <entity-ids>
+      <counter>
+        <item-type type-id="package" type="Package" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="group" type="Group" />
+        <value>274</value>
+      </counter>
+      <counter>
+        <item-type type-id="universal-connector" type="Universal Connector" />
+        <value>2</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlPackageDiagram</type>
+        <value>1</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields />
+  </counters>
+  <alias-groups />
+  <management uid="md-a08b123656d14e12837f3b4e8dfcd363" name="" task-id-sequence="0">
+    <persons>
+      <person id="">
+        <first-name>Kilian</first-name>
+        <last-name>Kriesten</last-name>
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-848b6acbd70c4fce8553da74a2cbd851" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <parameters />
+      <types>
+        <type id="Cpp.int" tid="s-integer32" name="int" description="">
+          <parameter ref="c0af662d372f4009a8f2397fe47c8468" value="" />
+          <parameter ref="c1951d5c56ec4581bab0e6959a0050c0" value="" />
+        </type>
+        <type id="PubSubClient" tid="" name="PubSubClient" description="" />
+        <type id="Class:b34a47560d4b421689bf1a09d16edb28" tid="" name="SmokeSensor" description="" class-ref="b34a47560d4b421689bf1a09d16edb28" />
+        <type id="DynamicJsonDocument" tid="" name="DynamicJsonDocument" description="" />
+        <type id="Class:8a60e06ccd4648e986edf6c47e5b9d77" tid="" name="FireSensor" description="" class-ref="8a60e06ccd4648e986edf6c47e5b9d77" />
+        <type id="Class:9f9794c08916487a81f741517200ee80" tid="" name="Buzzer" description="" class-ref="9f9794c08916487a81f741517200ee80" />
+        <type id="using" tid="" name="using" description="" />
+        <type id="boolean" tid="" name="boolean" description="" />
+        <type id="Class:e1278e03fe7c46e8ac516e15b60f5b07" tid="" name="TrafficLight" description="" class-ref="e1278e03fe7c46e8ac516e15b60f5b07" />
+        <type id="uint16_t" tid="" name="uint16_t" description="" />
+        <type id="Cpp.bool" tid="boolean" name="bool" description="">
+          <parameter ref="c0af662d372f4009a8f2397fe47c8468" value="" />
+          <parameter ref="c1951d5c56ec4581bab0e6959a0050c0" value="" />
+        </type>
+        <type id="DHT" tid="" name="DHT" description="" />
+        <type id="Class:5eb9cd88bde04d1381847103c2f32813" tid="" name="WaterSensor" description="" class-ref="5eb9cd88bde04d1381847103c2f32813" />
+      </types>
+    </custom-types>
+  </types>
+  <items />
+  <models>
+    <model id="p06b34f53098f41f48f8cae059f3efae1_607200931" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author>Kilian Kriesten</author>
+        </authors>
+        <description />
+        <creation-date>09/27/2022 20:18:57</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items>
+        <item id="10b81530ff5444d7b1a5f928ae83b58b" cid="PKG001" type="package" name="" style-class="" creator="" creation-date="09/27/2022 20:19:50">
+          <tagged-values>
+            <tagged-value id="tv78563f59fdd64ec1bd710c3f49053722" name="namespace" type="text" multiple="false" hidden="false" value="" />
+            <tagged-value id="tv70616690d2a1472baff1d323ace4bcfa" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+          </tagged-values>
+        </item>
+      </abstract-items>
+      <sub-models>
+        <model id="p4be4c839287f47f2824cb407379903fc_906714378" name="" namespace="" order-index="2">
+          <meta>
+            <authors>
+              <author>Kilian Kriesten</author>
+            </authors>
+            <description />
+            <creation-date>09/27/2022 20:19:50</creation-date>
+            <change-date>01/01/0001 00:00:00</change-date>
+            <revision-count>0</revision-count>
+            <version />
+          </meta>
+          <tagged-values>
+            <tagged-value id="tv11f47d151a29463c82fccbc76150a075" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+          </tagged-values>
+          <abstract-items>
+            <item id="9b6ffda5a7d74301b68db05adc71a6a5" cid="PROP005" type="property" name="greenPin" style-class="" owner="e1278e03fe7c46e8ac516e15b60f5b07" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tv09bb6e0884fc4130b1b15912380301f3" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="greenPin" />
+                <tagged-value id="tvcf3d43fc459940b48fc223d14ae92d69" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv5c8c55fedf974e648998d82982d3f86e" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                <tagged-value id="tvd2d8d368e789484e87419d47108db19c" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tveb466d26392841008992ab212340c9af" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="120" />
+                <tagged-value id="tv79a744146bfc48528a0e9747e5c8dddd" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="13" />
+                <tagged-value id="tvbc1a547dfcd644ddb6dbb2e413683438" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="316" />
+                <tagged-value id="tvabd09751e49b453e99bcc7117597ba82" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="5cb51149c5dc4c89ad5e4cd3f4e29652" cid="PROP008" type="property" name="pin" style-class="" owner="aa81892e74a746b5a75c01ef08c0aa18" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tv91040c38b9e34f60ba630812ddca28a2" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="pin" />
+                <tagged-value id="tv78e8c93ce94645c9bfa8e505ab92cea0" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv81beb9439daf426585cc993fb1225b05" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\digitalSensor.hpp" />
+                <tagged-value id="tvb5dd4797c3554ed8a1b4875dcf954754" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv4f9631d999284dda8e4681344696eab6" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="88" />
+                <tagged-value id="tvfa5413be25834d6788e1a3916bf5423c" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="8" />
+                <tagged-value id="tvfce9d6406ae74427b73aed8c640c86e7" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="189" />
+                <tagged-value id="tv9f3a08490d1f46108dde537661decf59" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="95027370fd1c4ed28075dedf01f0923d" cid="REL001" type="relationship" name="" style-class="" creation-date="09/27/2022 20:19:50" from="4187a74ee8a1485e87474edb14b38f42" to="8a60e06ccd4648e986edf6c47e5b9d77" visibility="package">
+              <tagged-values>
+                <tagged-value id="tva35adcf029534010a262e7a468bd9139" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+              <relation from="4187a74ee8a1485e87474edb14b38f42" to="8a60e06ccd4648e986edf6c47e5b9d77" derived="false">
+                <start-role id="umlar-0a161f4e-d968-4edb-a22a-9584d25ade4b" name="" navigability="" association-type="aggregation" visibility="private" />
+                <end-role id="umlar-3ce92c89-fac9-4b6f-abc2-1de09e01492a" name="" navigability="" association-type="association" visibility="private" />
+              </relation>
+            </item>
+            <item id="5eb9cd88bde04d1381847103c2f32813" cid="C002" type="class" name="WaterSensor" style-class="" creation-date="09/27/2022 20:19:50" visibility="undefined">
+              <tagged-values>
+                <tagged-value id="tv860d24e51195473f9e32d0fb75428ca3" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tve89e5b9a262f4fd0888c2217f8e72a6e" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="WaterSensor" />
+                <tagged-value id="tvb5ebff1f3a4841c2a0b091537b7fd1b5" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv972aa267cc8e4100a26a12673c96d745" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\waterSensor.hpp" />
+                <tagged-value id="tve10e523336fb4d5982800391b1cdc794" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv0a3c2032e6764145aa6a8e02b6e8d84a" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="86" />
+                <tagged-value id="tv8c4787a988a442ef879e487122eec30f" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="154" />
+                <tagged-value id="tva24fde81c49a4811baccf0e5bbe1176b" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="248" />
+                <tagged-value id="tv8d8a5a54bda942fda61bdae01ecf2c29" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="8989014f5e0f42a5877121b03cc91d71" />
+              </owned-items>
+              <attributes>
+                <attribute id="a86ed4f043521487f93b6c5d29d38035a572" cid="PROP001" name="AnalogSensor::AnalogSensor" creation-date="09/27/2022 20:19:50" property-ref="8989014f5e0f42a5877121b03cc91d71" />
+              </attributes>
+              <operations>
+                <operation id="o2d84185117ca430db2e4a3b7768481d6585" cid="OP030" name="isWater" creation-date="09/27/2022 20:19:50" type="bool" type-id="Cpp.bool" visibility="public">
+                  <parameters>
+                    <parameter id="p8fd10fc6cb6d4e85b6c2c155c01f213f" name="limit" type="uint16_t" type-id="uint16_t" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tvba73a539dfad4ea89140c6ccb1b6fb96" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="isWater" />
+                    <tagged-value id="tvc7341ad3b62d4ae2acdc3e8d3f84b0bc" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\waterSensor.cpp" />
+                    <tagged-value id="tv5f5bd9cbbcb24eb88208c6d935b1a240" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv12d3aeccd351450596f5b65b1ae0204c" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="93" />
+                    <tagged-value id="tvdc6e303016d0445b81b4cfd135ac6363" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="89" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    return AnalogSensor::isDetected(limit);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="oe3ec03a096f74480b8a8e864c8e0a50e585" cid="OP031" name="detectWater" creation-date="09/27/2022 20:19:50" type="uint16_t" type-id="uint16_t" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv0430dfeda06d443a97496cab3d9b3e22" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="detectWater" />
+                    <tagged-value id="tv8aeebfea72f24858aa88b2910c2b60a0" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\waterSensor.cpp" />
+                    <tagged-value id="tv46696ff1c897494b826655b5de2117b7" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv8e7ea6a4b3f4435a9cab2b1f7f16258c" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="184" />
+                    <tagged-value id="tvaff8607edbcc43a5adc94aca0630f360" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="76" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    return AnalogSensor::getValue();
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="aa81892e74a746b5a75c01ef08c0aa18" cid="C007" type="class" name="DigitalSensor" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tvac8cb131a35343a8b0651ec57fb70c8f" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tv6ecd7d957ba140f1927ebaff92ded424" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="DigitalSensor" />
+                <tagged-value id="tv505d6a229b1e4e5aa55904aeed8d6e73" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv211584482455456892750a9660f097eb" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\digitalSensor.hpp" />
+                <tagged-value id="tvb780a6ecca03403eac5b1098d334458b" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv7c3ccd1357f14ef6891bb23586487c98" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="53" />
+                <tagged-value id="tv3cdf3cfaf2ba4577b4445579fc1e8f9d" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="128" />
+                <tagged-value id="tv5ce018a86cf64b2689e76b24c6c4e16f" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="189" />
+                <tagged-value id="tv1acbe799dcf74869b66354d24102a820" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="5cb51149c5dc4c89ad5e4cd3f4e29652" />
+              </owned-items>
+              <attributes>
+                <attribute id="a36718536fd8b4c48ba82638648fe34b6586" cid="PROP008" name="pin" creation-date="09/27/2022 20:19:50" property-ref="5cb51149c5dc4c89ad5e4cd3f4e29652" />
+              </attributes>
+              <operations>
+                <operation id="o616c46ffb07345c0992072c38c8b50bf586" cid="OP034" name="DigitalSensor" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="p3fa3f01936ec4fb1914cf8fa280bae38" name="pin" type="int" type-id="Cpp.int" />
+                  </parameters>
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv853fa3b137b647348bd3d31dfa5419e4" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="DigitalSensor" />
+                    <tagged-value id="tv6d5d64ffd71e4d73be385676b1158174" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\digitalSensor.hpp" />
+                    <tagged-value id="tv5ebd343d55db495f827c9d50508e0a78" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv0d5350e9ecda4eef8f8ce792ff32a7fe" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="110" />
+                    <tagged-value id="tve5b6ea6fd63a45139c0ae912ff3f9681" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="23" />
+                  </tagged-values>
+                </operation>
+                <operation id="ocfc378011dc84a68af57f0d677aa5e4e586" cid="OP035" name="DigitalSensor" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tvd3d62ff5311549938ada57fcefc56d04" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="DigitalSensor" />
+                    <tagged-value id="tve6522b10d20b4e80aa3f9b4f1b7694c3" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\digitalSensor.hpp" />
+                    <tagged-value id="tvc7197753de1b4e2abde230993627178f" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv1d5e8c56662d4c279d5d23ce5243d464" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="138" />
+                    <tagged-value id="tv15d5ce445390411da5a93bfa5b082961" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="17" />
+                  </tagged-values>
+                </operation>
+                <operation id="od2d94f81f7a34757bbd0c607e8effcc8586" cid="OP036" name="isDetected" creation-date="09/27/2022 20:19:50" type="bool" type-id="Cpp.bool" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tve0b9d5adb03040b282179f9ad329cfea" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="isDetected" />
+                    <tagged-value id="tv40dd4f7acae44cb292141c9e0711320d" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\digitalSensor.hpp" />
+                    <tagged-value id="tv6cae3be62b2e48dea59ee2889c495a87" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv9c5d97332508475395e6f79e83fd70a1" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="160" />
+                    <tagged-value id="tv6dd510dac2384a79956948c06ea62746" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="18" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    int sensorVal = digitalRead(this-&gt;pin);
+    bool isDetectedVal = sensorVal == HIGH ? true : false;
+    return !isDetectedVal;
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="c73a70c16d5a4a9685cc058d6112f730" cid="C008" type="class" name="AnalogSensor" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tva49c267f4ac84a979e06a969c1784a8c" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tvb8c5005caf5e4e9b8fef8c00f04bb87b" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="AnalogSensor" />
+                <tagged-value id="tv16a8558b92174d02abb94f5217e826aa" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv174279faab504c6d9b2cf29b903c6531" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                <tagged-value id="tvd1d2182576a64816a828eaaf1a1d59a8" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tvbd1a97a0d91f4fb4a8461f8efcdea361" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="73" />
+                <tagged-value id="tvb29bfb1c746d413aa2e62cabf90cdd05" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="171" />
+                <tagged-value id="tvd22d9e0bea0e4cbd96f62e76280074b1" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="252" />
+                <tagged-value id="tv8e61455840a04593adc1a6a9084684ba" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="404b6a9101d2404da2f33e0d27d92150" />
+              </owned-items>
+              <attributes>
+                <attribute id="adab5dda6183d4fd9b7a30d482811f2ba586" cid="PROP009" name="pin" creation-date="09/27/2022 20:19:50" property-ref="404b6a9101d2404da2f33e0d27d92150" />
+              </attributes>
+              <operations>
+                <operation id="o82a7ce93a7144480b93286568b3a251f586" cid="OP037" name="AnalogSensor" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="p047b8304ddaa47508c9ae57099ecb13e" name="pin" type="uint8_t" type-id="uint8_t" />
+                  </parameters>
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv3c9df9e28aad4585811b398e34987077" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="AnalogSensor" />
+                    <tagged-value id="tv4414ec9d2d184aa28a59f44874845195" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                    <tagged-value id="tvd2dfcfe54a5b4775806de2eb8c6f6dab" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv7d7f1717649d48ff9cb8249a66837c41" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="129" />
+                    <tagged-value id="tva47620d929924bc48c2d992752dc3df0" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="26" />
+                  </tagged-values>
+                </operation>
+                <operation id="ob2ac9b1a3eba43a5994a4d3053a58587586" cid="OP038" name="AnalogSensor" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv0ca76481fb8142569b3b499c9831a209" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="AnalogSensor" />
+                    <tagged-value id="tv57e75f30b48448fda6769d1d8eedd43b" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                    <tagged-value id="tvce529ef2594b415b9fc6d9f937042ee2" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv1c27287953fa466482b73016b21fbaaf" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="160" />
+                    <tagged-value id="tva589e78e85304d149abdb9624a5a4548" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="16" />
+                  </tagged-values>
+                </operation>
+                <operation id="od1e1b5d1253a4607abee01b864a8e59c586" cid="OP039" name="getValue" creation-date="09/27/2022 20:19:50" type="uint16_t" type-id="uint16_t" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv129729a062cb4b89b5075bdac8e56966" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="getValue" />
+                    <tagged-value id="tv6e60f4bb301f4310b7282f7862ea9035" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                    <tagged-value id="tv891381e2a0674607a339152423539601" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvbb68e3a6b81945728043ce0feaf7f128" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="181" />
+                    <tagged-value id="tv20be1a399abc4999a95799a4205c407e" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="20" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    return analogRead(this-&gt;pin);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="od53510f88b074a15b601871874941af8586" cid="OP040" name="isDetected" creation-date="09/27/2022 20:19:50" type="boolean" type-id="boolean" visibility="public">
+                  <parameters>
+                    <parameter id="p18ec9b5d1ad34bc19bf6e35d6375870a" name="limit" type="uint16_t" type-id="uint16_t" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv0868e16e9bbe42ccb63c06c4cd4c806d" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="isDetected" />
+                    <tagged-value id="tv39067dd3b0da4f2a8a9714070f4ea8f1" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                    <tagged-value id="tvb1ba15d1e50e44c4b26a13d3466df413" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvf706c33644794dd7bf6c7b42615ed7f4" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="206" />
+                    <tagged-value id="tv77c06fd246a641ad8f935d5fc0870b86" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="35" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    uint16_t value = analogRead(this-&gt;pin);
+    return value &gt;= limit ? true : false;
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="ec46597f060a40d1ad656fdca685e09c" cid="REL005" type="relationship" name="" style-class="" creation-date="09/27/2022 20:19:50" from="4187a74ee8a1485e87474edb14b38f42" to="e1278e03fe7c46e8ac516e15b60f5b07" visibility="package">
+              <tagged-values>
+                <tagged-value id="tv375bb042a445491a823fe817d8efcecf" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+              <relation from="4187a74ee8a1485e87474edb14b38f42" to="e1278e03fe7c46e8ac516e15b60f5b07" derived="false">
+                <start-role id="umlar-d8550e65-e336-4971-95bd-cbe94cc31fa7" name="" navigability="" association-type="aggregation" visibility="private" />
+                <end-role id="umlar-f5cd0743-a54b-4c6d-952f-d688560514c1" name="" navigability="" association-type="association" visibility="private" />
+              </relation>
+            </item>
+            <item id="b43debd26e6b42e19caaa39cbaffcc25" cid="PROP003" type="property" name="redPin" style-class="" owner="e1278e03fe7c46e8ac516e15b60f5b07" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tv43c74350e3a047f09467c8983937c744" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="redPin" />
+                <tagged-value id="tvd0197683d92745beb7f801d297ea6cc3" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tveed565c517a14864bb63cb5368dac939" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                <tagged-value id="tvb23cf7b82c604de081c8dcc0099010f8" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv46b96e010bbd458885c3d85896df312a" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="85" />
+                <tagged-value id="tvdcff06b90a8249b88ddcccfff7796a42" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="11" />
+                <tagged-value id="tv126cd8bef7e34b029b360ed4013fa8cf" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="316" />
+                <tagged-value id="tveaf8d683a3424447a32a8e3fec48b09c" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="0ed32b5030454999a78ef58fd56aa9c0" cid="GNR002" type="generalization" name="" style-class="" creation-date="09/27/2022 20:19:50" from="b34a47560d4b421689bf1a09d16edb28" to="aa81892e74a746b5a75c01ef08c0aa18">
+              <tagged-values>
+                <tagged-value id="tvf80ea7a86890492ea081a7d0e4f78259" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+            </item>
+            <item id="21aea1f4418f45668e94f66e1ce68028" cid="GNR001" type="generalization" name="" style-class="" creation-date="09/27/2022 20:19:50" from="5eb9cd88bde04d1381847103c2f32813" to="c73a70c16d5a4a9685cc058d6112f730">
+              <tagged-values>
+                <tagged-value id="tv664f12c1bdcb410a808b723fd9886f18" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+            </item>
+            <item id="2b0f3d553d7a4adcbfcf5e9ad959a5c1" cid="REL004" type="relationship" name="" style-class="" creation-date="09/27/2022 20:19:50" from="4187a74ee8a1485e87474edb14b38f42" to="9f9794c08916487a81f741517200ee80" visibility="package">
+              <tagged-values>
+                <tagged-value id="tv1fb45c4993bd45fba15ab81840797870" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+              <relation from="4187a74ee8a1485e87474edb14b38f42" to="9f9794c08916487a81f741517200ee80" derived="false">
+                <start-role id="umlar-16cbd200-70b7-4460-8465-6bc7d8e78ac9" name="" navigability="" association-type="aggregation" visibility="private" />
+                <end-role id="umlar-7e880313-1917-4547-80ca-5f695666bfc9" name="" navigability="" association-type="association" visibility="private" />
+              </relation>
+            </item>
+            <item id="9f9794c08916487a81f741517200ee80" cid="C003" type="class" name="Buzzer" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tvbb6b930dcb1a4077815c23027da2c337" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tvf6e1a5b3f3f54196a81d7104d847f121" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="Buzzer" />
+                <tagged-value id="tv9d73bc42f37a48829b52522942183d63" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tvea4a223602494be58bd61aa80af33a46" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.hpp" />
+                <tagged-value id="tva835f0a717174d8ba6c047d90af7405c" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv81e7b05285f54e1eaf290a7b963685cf" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="39" />
+                <tagged-value id="tv29d91276cd694730a8d52a112577055a" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="139" />
+                <tagged-value id="tve6746da5de0a43b08a718df6b307cce1" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="186" />
+                <tagged-value id="tv90c09f2cd6494695b6008a9fb1b7d8da" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:36" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="73c31c801fa946138dd75fe5f8e6913b" />
+              </owned-items>
+              <attributes>
+                <attribute id="ad958a174451441879c7b5f5288271986580" cid="PROP002" name="buzzerPin" creation-date="09/27/2022 20:19:50" property-ref="73c31c801fa946138dd75fe5f8e6913b" />
+              </attributes>
+              <operations>
+                <operation id="oa6079e335bfd4d588a63f20f171f65a2580" cid="OP018" name="Buzzer" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="p781082ebff5a4ede8a11ff684732cbce" name="buzzerPin" type="int" type-id="Cpp.int" />
+                  </parameters>
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv830a9d1075614cd5ae86d30f8316e2e8" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="Buzzer" />
+                    <tagged-value id="tvd1d57d1fa417474699ea26c5e97b76bb" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.hpp" />
+                    <tagged-value id="tv8299695618cb47ddac91abf373f1d274" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvc4a5a534099140f98e8447864eb43c61" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="95" />
+                    <tagged-value id="tvd307b53b135e423196324ef7b2f7487f" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="22" />
+                  </tagged-values>
+                </operation>
+                <operation id="ob1d7c9e8f64344f6acfb52168c797a3e581" cid="OP019" name="Buzzer" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tvae39a215be3945199c44ccf22bc54eea" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="Buzzer" />
+                    <tagged-value id="tv9efb52e3b7584e7daa268d7fe40366a3" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.hpp" />
+                    <tagged-value id="tv25daef52f5514641b0349bb6ac92cd76" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv5ef104ae389d412283590aaa9867d452" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="122" />
+                    <tagged-value id="tvdfa0c15edb644e31b9b64cd002a618f2" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="10" />
+                  </tagged-values>
+                </operation>
+                <operation id="o3f66b2144e804d03872835fd2b8ea363582" cid="OP022" name="startBeep" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tvf2192c1186834b47962f8596ecc05c2a" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="startBeep" />
+                    <tagged-value id="tve9e2efcb157547d0818bb93da7de69f6" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.cpp" />
+                    <tagged-value id="tv12247102b12342a0941c78d3d67b433f" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv60af1bac4c2744e1a678131b158da708" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="183" />
+                    <tagged-value id="tv705e2c6467d546f8a1e31fe608eeb436" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="69" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;buzzerPin, HIGH);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="o2c0a37d9c4da401f85dbaf1b4adaf762582" cid="OP023" name="stopBeep" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tvc95a29d063bb490d8a7eb87ec7cb9cf2" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="stopBeep" />
+                    <tagged-value id="tv15b9cc86be404116b160c3d9cf71ccab" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.cpp" />
+                    <tagged-value id="tv8f4d0e92320744709e066922a7e0e16e" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv475cad6320354020867a1a1e6ee6448c" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="253" />
+                    <tagged-value id="tv7bbc63eeb9554ab4aefefec419b2447e" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="67" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;buzzerPin, LOW);
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="cb0d9b7fe3224110a8ddb68887a8c4a9" cid="PROP007" type="property" name="DigitalSensor::DigitalSensor" style-class="" owner="8a60e06ccd4648e986edf6c47e5b9d77" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tv39981ba3948a48329885b80f06b15811" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="DigitalSensor::DigitalSensor" />
+                <tagged-value id="tv1443571c22eb43de8dcbd15411ec130f" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv67c401995e1e4416a3491acc73aeb2b9" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\fireSensor.hpp" />
+                <tagged-value id="tvaaab1e801303415abc9ad3ca240af6ba" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv7bd2a3633fbe4821b70332272344a1b1" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="141" />
+                <tagged-value id="tv8be7fe9132c2446fa4017c51b1c1caf4" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="35" />
+                <tagged-value id="tv99c4c5bba6404674a7dbc340c5698064" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="206" />
+                <tagged-value id="tv65436e39d2074166b939f9703b815970" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="using" type-id="using" />
+              <property />
+            </item>
+            <item id="ba641a1ff95b444ebb0102c3197af247" cid="REL002" type="relationship" name="" style-class="" creation-date="09/27/2022 20:19:50" from="4187a74ee8a1485e87474edb14b38f42" to="b34a47560d4b421689bf1a09d16edb28" visibility="package">
+              <tagged-values>
+                <tagged-value id="tv4aabf9dd5d34436887284d7bff1bbaf8" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+              <relation from="4187a74ee8a1485e87474edb14b38f42" to="b34a47560d4b421689bf1a09d16edb28" derived="false">
+                <start-role id="umlar-273ccee8-be22-434c-81d3-f43f564e5ca7" name="" navigability="" association-type="aggregation" visibility="private" />
+                <end-role id="umlar-c0f4e9e3-72e1-435a-938d-3443a71c521a" name="" navigability="" association-type="association" visibility="private" />
+              </relation>
+            </item>
+            <item id="8a60e06ccd4648e986edf6c47e5b9d77" cid="C006" type="class" name="FireSensor" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tv41d95876839a49eeac9471523b38fc70" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tv148f1666cf1b4d0fb4a59ea636f444f7" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="FireSensor" />
+                <tagged-value id="tv412df007fd1b445d9d3a01eb1ea892fa" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv2ad5dc3536dd4e29af8679d3f0fc684e" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\fireSensor.hpp" />
+                <tagged-value id="tv7fb74c424d864c4581bcc7c46ea416ed" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv327e3b78302f41ba9b41d8d9972e6ad4" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="85" />
+                <tagged-value id="tv3863dc07ffb9473099f93b57bebbf88a" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="113" />
+                <tagged-value id="tvb26d103859084db2b4096d715bfb1d9c" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="206" />
+                <tagged-value id="tv3b219e1eecc84c559067dab298147428" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="cb0d9b7fe3224110a8ddb68887a8c4a9" />
+              </owned-items>
+              <attributes>
+                <attribute id="ab35e010c66e242199fc772e4d225a4a7585" cid="PROP007" name="DigitalSensor::DigitalSensor" creation-date="09/27/2022 20:19:50" property-ref="cb0d9b7fe3224110a8ddb68887a8c4a9" />
+              </attributes>
+              <operations>
+                <operation id="ode7e0bf095d048089d55841373684911585" cid="OP033" name="isFire" creation-date="09/27/2022 20:19:50" type="bool" type-id="Cpp.bool" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv77725064fdcc4c5f808e6ef9fa853e83" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="isFire" />
+                    <tagged-value id="tv5008e18a181041cebb5db1252ad83eb4" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\fireSensor.hpp" />
+                    <tagged-value id="tv394294abf2b94481896634ebeb8c03a1" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv34bf520e709540348f3b6f0efff89ae8" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="181" />
+                    <tagged-value id="tv3fc0b00ae87648039030baf7c1f60be1" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="14" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    return DigitalSensor::isDetected();
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="404b6a9101d2404da2f33e0d27d92150" cid="PROP009" type="property" name="pin" style-class="" owner="c73a70c16d5a4a9685cc058d6112f730" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tve869d08ed0d5428d9885dd22c8b8d8d5" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="pin" />
+                <tagged-value id="tv46e052218ecd4f87b905bbbd8573544c" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tvbfcf8848b39f49979968bd899fb22daf" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\analogSensor.hpp" />
+                <tagged-value id="tv18a3cbfa464745ab81d3b3db6b507c88" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv1d3edefe534142169d64ca71a3b636a1" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="107" />
+                <tagged-value id="tv3f6255197d854c62a5284b246fb6bf82" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="8" />
+                <tagged-value id="tv2df3269a70f243aca7603ec8ade6057d" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="252" />
+                <tagged-value id="tv301bd8dddd24411b8e5f594ae01e57b6" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="8989014f5e0f42a5877121b03cc91d71" cid="PROP001" type="property" name="AnalogSensor::AnalogSensor" style-class="" owner="5eb9cd88bde04d1381847103c2f32813" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tvc4dd024e3fb3463bbf72eb23006114a6" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="AnalogSensor::AnalogSensor" />
+                <tagged-value id="tve29ffda209b64255bf243881d3b07f8e" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv5ff62c9f019145f0975c5daada6f8cad" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\waterSensor.hpp" />
+                <tagged-value id="tv286c35f49ef24041b03dfa18b6678550" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv7c4c3376c5364b74941c68e21df28e1c" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="142" />
+                <tagged-value id="tv5bb9a05db02d484f8108d93873243e98" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="33" />
+                <tagged-value id="tv2f08d9dabd034d66bc6561e137ac51a2" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="248" />
+                <tagged-value id="tv6d8cae4cb1514efabe8471ea0162a03d" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="using" type-id="using" />
+              <property />
+            </item>
+            <item id="4187a74ee8a1485e87474edb14b38f42" cid="C001" type="class" name="Main" style-class="" creation-date="09/27/2022 20:19:50">
+              <stereotypes>
+                <stereotype name="main" />
+              </stereotypes>
+              <stereotype-instances>
+                <stereotype id="4187a74ee8a1485e87474edb14b38f42_main_c" type="main" ref="" />
+              </stereotype-instances>
+              <operations>
+                <operation id="o7798fcac886a4a36b93e063853ab27e5574" cid="OP004" name="fireSensor" creation-date="09/27/2022 20:19:50" type="FireSensor" type-id="Class:8a60e06ccd4648e986edf6c47e5b9d77" visibility="public">
+                  <parameters>
+                    <parameter id="pb431e698e05c45c0949f4385d310c84e" name="?" type="FIREPIN" type-id="FIREPIN" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv0063b03aba374567bcfc5caed5699db6" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="fireSensor" />
+                    <tagged-value id="tvf1d97e4520a3466ebb06ef1b4f837c2c" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv6c0da53c5bf948f9870ef74c7320a4c8" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvca1689ee18dd4dfab77819a7e18674ed" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="783" />
+                    <tagged-value id="tv01cdd364e8504432880006ec6ff11c0e" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="31" />
+                  </tagged-values>
+                </operation>
+                <operation id="ocd3b4218a4d74aac89d4eab8a86bc01c575" cid="OP005" name="smokeSensor" creation-date="09/27/2022 20:19:50" type="SmokeSensor" type-id="Class:b34a47560d4b421689bf1a09d16edb28" visibility="public">
+                  <parameters>
+                    <parameter id="p16bfa6a056764fc6b76dc03c619c3701" name="?" type="SMOKEPIN" type-id="SMOKEPIN" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv46e8eca8cb9148b9adbf2b3f6ce24330" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="smokeSensor" />
+                    <tagged-value id="tv4b040af0ec334a92b137aed19b87f566" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tvefadff0a0f4845f49501eab79acc73f6" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvb147a77bb81848c2b747f39b80da11c0" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="815" />
+                    <tagged-value id="tva1e22f5cffd34c55bb5cbcea7428ff53" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="34" />
+                  </tagged-values>
+                </operation>
+                <operation id="o6c3bfdf6bed14a2986e70cf2872858a7575" cid="OP006" name="waterSensor" creation-date="09/27/2022 20:19:50" type="WaterSensor" type-id="Class:5eb9cd88bde04d1381847103c2f32813" visibility="public">
+                  <parameters>
+                    <parameter id="p48cd5b7fbb2e44c7865569cbbba6c5cc" name="?" type="WATERPIN" type-id="WATERPIN" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv4d87b933dbb74e29bc5e6f1ed9bf49c2" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="waterSensor" />
+                    <tagged-value id="tv63b88baa3f284ca49934de60f0ab7b3e" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv2f93a6554aee4606b35da6833925915c" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv00c3d8a1fd324c91885c2f0c63dd81af" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="850" />
+                    <tagged-value id="tv1bc32c629fc74be48b284d0ce8a73bcd" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="34" />
+                  </tagged-values>
+                </operation>
+                <operation id="o07816ad8f9484ee5967d2843d74931cf575" cid="OP007" name="dht" creation-date="09/27/2022 20:19:50" type="DHT" type-id="DHT" visibility="public">
+                  <parameters>
+                    <parameter id="p521daf4b514b40f284c95f9d214f777f" name="?" type="DHTPIN" type-id="DHTPIN" />
+                    <parameter id="p4d1cc56b7a8f4f939a78b63ee33bbb86" name="?" type="DHTTYPE" type-id="DHTTYPE" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv698df027ee5341ca828cffe9e6bbc366" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="dht" />
+                    <tagged-value id="tvf122be1a6cb64a9299a3a2ed23248264" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv70fd65b0eaab407dba14ec6fb8c82212" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv25a90702f01143ea875d51b1835cedf7" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="885" />
+                    <tagged-value id="tv74292af983d74fa9aa1e1827202281c0" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="25" />
+                  </tagged-values>
+                </operation>
+                <operation id="o02d933900d074b64a5289c921a8a12ba575" cid="OP008" name="buzzer" creation-date="09/27/2022 20:19:50" type="Buzzer" type-id="Class:9f9794c08916487a81f741517200ee80" visibility="public">
+                  <parameters>
+                    <parameter id="p215ce3c790284a48926fe21b02353995" name="?" type="BUZZERPIN" type-id="BUZZERPIN" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv7eb71f995e14470da99dff0b1ee0011f" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="buzzer" />
+                    <tagged-value id="tv3e767c719ae945eda79a71a9e3bb6a4b" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv90f6a9fa0217400eb213622cdadd2e5a" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv1e45a8327f0b4de992b82bc81f7af3b0" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="935" />
+                    <tagged-value id="tvba4f81d390084512b5e98468067ee041" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="25" />
+                  </tagged-values>
+                </operation>
+                <operation id="o4f4e2829800342388e38b2e411ed6d15575" cid="OP009" name="trafficLight" creation-date="09/27/2022 20:19:50" type="TrafficLight" type-id="Class:e1278e03fe7c46e8ac516e15b60f5b07" visibility="public">
+                  <parameters>
+                    <parameter id="pde7a6d8c29784eeca7f5af93713804e3" name="?" type="REDPIN" type-id="REDPIN" />
+                    <parameter id="p17d84a18492b4bb7a0e9ab0031e7359b" name="?" type="YELLOWPIN" type-id="YELLOWPIN" />
+                    <parameter id="p9a109f694b4f4725a965dd86e8a925ed" name="?" type="GREENPIN" type-id="GREENPIN" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv7f470869b6ea4c899f78c74eee0fc5d9" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="trafficLight" />
+                    <tagged-value id="tv692c00ad925e447c840fae158a5bcd97" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv35b52e500cdd44a19140d76dca48f5fb" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv4b07bb17cd3d471990fe4f41dc4c6b62" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="961" />
+                    <tagged-value id="tv44f83246e14f47deb6b5570924bc5b67" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="55" />
+                  </tagged-values>
+                </operation>
+                <operation id="o11bb8340f37749f295d588e225c016d5575" cid="OP010" name="client" creation-date="09/27/2022 20:19:50" type="PubSubClient" type-id="PubSubClient" visibility="public">
+                  <parameters>
+                    <parameter id="p0e30c8d0b3cc44d1a429f9120b665ccd" name="?" type="wifiClient" type-id="wifiClient" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv2b6ba6bc9e464404813838281f5c3b9c" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="client" />
+                    <tagged-value id="tv82570ef7285c45a6a17218845cb801ec" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv439561c5de9448c6911c97c57253de82" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvb03247b5fb044a8ba9bc6d16fb9da365" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="1412" />
+                    <tagged-value id="tvcc99aba4752d415a8879920283042dab" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="32" />
+                  </tagged-values>
+                </operation>
+                <operation id="o9eaaf09a9f95463098b09b34c7f8cb63575" cid="OP011" name="doc" creation-date="09/27/2022 20:19:50" type="DynamicJsonDocument" type-id="DynamicJsonDocument" visibility="public">
+                  <parameters>
+                    <parameter id="pb6e7105ac76f41a5b6e5de05255a7281" name="?" type="capacity" type-id="capacity" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tvaee0667ac3a442bd92f06e48f6fee1ba" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="doc" />
+                    <tagged-value id="tvd21567ed55d74a14bc78d50f31a2f81b" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv48e38c7faed64a01ad531224164c8414" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv394e251a753d49d699d84069daf6498e" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="1583" />
+                    <tagged-value id="tv48035204e64748e8ba5b8ac7bc7af386" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="34" />
+                  </tagged-values>
+                </operation>
+                <operation id="o4cff3763b077474e967264481b9d03a4575" cid="OP012" name="initWifi" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv1d781e1d65d14757a1f59c22e2c999f5" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="initWifi" />
+                    <tagged-value id="tv412ed12870bb4d63b050d3965f9cc76e" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv723b5ebdf3814c11a0bb09f1a659d760" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvfe9d7dbd3c9f47d59074670ef13961f3" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="1756" />
+                    <tagged-value id="tv129b938718934c9a888632c7052c564c" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="794" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+
+  if (!USE_DHCP)
+  {
+    IPAddress local_IP;
+    IPAddress gateway;
+    IPAddress subnet;
+    IPAddress primaryDNS;
+    IPAddress secondaryDNS;
+
+    local_IP.fromString(LOCAL_IP);
+    gateway.fromString(GATEWAY_IP);
+    subnet.fromString(SUBNET_ADDR);
+    primaryDNS.fromString(PRIMARY_DNS);
+    secondaryDNS.fromString(SECONDARY_DNS);
+
+    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS))
+    {
+      Serial.println("STA Failed to configure");
+    }
+  }
+
+  Serial.println("Connecting to WiFi ...");
+  wifiMulti.addAP(ssid, password);
+
+  while (wifiMulti.run() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="of455f95247dd4463afebda9738b5ae2c575" cid="OP013" name="initMqtt" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv8966707e216e4748a9679c518f42ec71" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="initMqtt" />
+                    <tagged-value id="tv2d1073e6dc414806be2b74bc17794131" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv4fa51c9aa45142358c63bc87b6eba378" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tve0cc4accee41468a974e5790389aa9b5" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="2552" />
+                    <tagged-value id="tvecd596ec3cc44019a3b8f72ad1c49c64" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="334" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+  client.setServer(MQTT_SERVER, MQTT_PORT);
+
+                          
+  client.connect(mqttdevice, MQTT_USER, MQTT_PW, willTopic, willQoS, willRetain, willMessage);
+  while (!client.connected())
+  {
+    Serial.print(".");
+    delay(500);
+  }
+
+                   
+  client.publish(willTopic, statusMessage, true);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="ocf9e58c2adaf42339f982e02c817c091575" cid="OP014" name="setup" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv162ca4011fa147ccb11ac2238316edac" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="setup" />
+                    <tagged-value id="tv802b4c52179f40649254e4c24c88a8a8" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv599f056244ba42678858254b70b83fbf" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvb65a9790933e45208a416da3b2fff4f9" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="2949" />
+                    <tagged-value id="tvc0c878fa35f1454f9995b08616f6461e" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="398" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+                                         
+  Serial.begin(115200);
+
+                      
+  trafficLight.setYellow();
+
+                    
+  initWifi();
+
+              
+  initMqtt();
+
+                    
+  pinMode(DHTPIN, INPUT);
+  dht.begin();
+
+                              
+  trafficLight.setGreen();
+
+                     
+  Serial.println("Setup completed.");
+  delay(1000);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="of212f4237fe54e95b4785ad23a50d9f7575" cid="OP015" name="setJSONData" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="pe9266314cd2941b29dfcdce1d7142de0" name="sensorName" type="char" type-id="Cpp.char" />
+                    <parameter id="p47d263b33f5c45d78f0aebaefa00e2c1" name="humidity" type="float" type-id="Cpp.float" />
+                    <parameter id="p9117709d10f24ac3adb28352cbf802c7" name="temp" type="float" type-id="Cpp.float" />
+                    <parameter id="p32b83337c1ce425496f75a153a9c69e5" name="isFire" type="bool" type-id="Cpp.bool" />
+                    <parameter id="p2bf8fc137bbe43f1b7d0ddaf5f629d65" name="isSmoke" type="bool" type-id="Cpp.bool" />
+                    <parameter id="p0268ad853b3a486dbad4d49c8e6c0b50" name="isWater" type="bool" type-id="Cpp.bool" />
+                    <parameter id="p0ffe6afab7cb48a89476247bf58e965d" name="water" type="uint16_t" type-id="uint16_t" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tv6505ae671f2b4824a9ec9fbcff285740" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="setJSONData" />
+                    <tagged-value id="tvce91073b1ff344ff9eb736e10dcd718d" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv6211897857254d7fb85525421f0d3bcb" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv28151a7a86a44d94baa1637ae0ab7175" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="3349" />
+                    <tagged-value id="tv64b40660c46b499f91ad23691148eb9f" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="339" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+  doc.clear();
+  doc["sensor"] = sensorName;
+  doc["humidity"] = humidity;
+  doc["temperature"] = temp;
+  doc["isFire"] = isFire;
+  doc["isSmoke"] = isSmoke;
+  doc["water"] = water;
+  doc["isWater"] = isWater;
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="oe80a6f42d33a4caf8b5d2f0dc76d530b577" cid="OP016" name="loop" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tva95a7bcb3fdb492da8e4ec0558c10fb7" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="loop" />
+                    <tagged-value id="tvc4e8cfcf1b8742c6ac42ecd47df34232" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\main.cpp" />
+                    <tagged-value id="tv536917fb4ffd43e3b6c4b10925ec3129" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvc9cd52996a6a41659493d9236f126a15" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="3753" />
+                    <tagged-value id="tv79f684e74f6d4981aeaa5623750c3dde" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="1004" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+  Serial.println("-----------------------------------------------");
+  Serial.println("Loop started");
+
+  Serial.println("Read Sensors");
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
+  bool isFire = fireSensor.isFire();
+  bool isSmokey = smokeSensor.isSmokey();
+  uint16_t water = waterSensor.detectWater();
+  int limt = WATERLIMIT;
+  bool isWater = waterSensor.isWater(limt);
+
+  bool isAlarm = isFire || isWater || isSmokey;
+
+  if (isAlarm)
+  {
+    trafficLight.setRed();
+    buzzer.startBeep();
+  }
+  else
+  {
+    trafficLight.setGreen();
+    buzzer.stopBeep();
+  }
+
+  Serial.println("Build JSON");
+  setJSONData(SENSORNAME, humidity, temperature, isFire, isSmokey, isWater, water);
+
+                                                       
+  serializeJsonPretty(doc, msg);
+  Serial.println(msg);
+
+  Serial.println("Publish Message");
+                           
+  client.publish(outTopic, msg);
+  Serial.println("Going to sleep!");
+
+  delay(1000);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="o74767286b4d34d93947c1935452c9c9e577" cid="OP017" name="toFullJSON" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="p8cf5b5b3815e4fd4bc78fe9a802ca99f" name="buf" type="_any" type-id="_any" />
+                    <parameter id="pbd9239117afe4854be46db212e684846" name="sensorName" type="char" type-id="Cpp.char" />
+                    <parameter id="p4de501a8717c4cdabe7bb4eb2d8204c7" name="humidity" type="float" type-id="Cpp.float" />
+                    <parameter id="p0ddd0347da384c68a35a1d151e69c547" name="temp" type="float" type-id="Cpp.float" />
+                    <parameter id="p545cd76ca6414812846b68dd34f23ca3" name="isFire" type="bool" type-id="Cpp.bool" />
+                    <parameter id="p1b9186a2647f4fed9fd7058a30b00a06" name="isSmoke" type="bool" type-id="Cpp.bool" />
+                    <parameter id="pbaf014e40b994f88beee9cbad7a1c16c" name="isWater" type="bool" type-id="Cpp.bool" />
+                    <parameter id="p291d9bc001084bbbb337fef100a4231d" name="water" type="uint16_t" type-id="uint16_t" />
+                  </parameters>
+                  <tagged-values>
+                    <tagged-value id="tvfb0ff9ca421f45f38fa219deda127d83" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="toFullJSON" />
+                    <tagged-value id="tv7ebf708ddb294a7c8901e2e8f763c820" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\tojson\toJson.hpp" />
+                    <tagged-value id="tvac8c71095d6d42dcb4ca60379599af37" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvc69332dfa73f47f5bd875406ec3265bb" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="90" />
+                    <tagged-value id="tv9eda3adf833d4da29f6bdccf20e7185c" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="135" />
+                  </tagged-values>
+                </operation>
+              </operations>
+            </item>
+            <item id="b34a47560d4b421689bf1a09d16edb28" cid="C005" type="class" name="SmokeSensor" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tvc1e9065a0dd24757812837818cd1a11d" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tv59d5fd55289c40d886c67268a5ac05d5" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="SmokeSensor" />
+                <tagged-value id="tv8ca440dd3fc441fa9179367590d9d577" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv164a8e8c920e4e089aaecb336d852406" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\smokeSensor.hpp" />
+                <tagged-value id="tv12d4465419b9413c872b3e4512e76e1e" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tvede356f5f34c404981a4ae111e4fe496" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="87" />
+                <tagged-value id="tv6007d58075884f00bf6168d67b1451bd" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="116" />
+                <tagged-value id="tv366f92523bcb440f88f38fa9431b5f5b" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="211" />
+                <tagged-value id="tv30f72ea75f5e420186458608297bf21d" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="7567bc2362354ad1aba8d037767654fe" />
+              </owned-items>
+              <attributes>
+                <attribute id="a6b43fca7f79e484f80477c274cc484d4585" cid="PROP006" name="DigitalSensor::DigitalSensor" creation-date="09/27/2022 20:19:50" property-ref="7567bc2362354ad1aba8d037767654fe" />
+              </attributes>
+              <operations>
+                <operation id="o4d92a53e595c4b729ac19d131a5f6c83585" cid="OP032" name="isSmokey" creation-date="09/27/2022 20:19:50" type="bool" type-id="Cpp.bool" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tvb707429f505f4cc7a214dfd21e57c552" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="isSmokey" />
+                    <tagged-value id="tv6c53fe80e12a4e368b3848ab1eb62126" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\smokeSensor.hpp" />
+                    <tagged-value id="tv0e07592b8f474a069f6cd905d4233992" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv661af1468bb34d5a8cc6bf712a301fff" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="184" />
+                    <tagged-value id="tv326f325c14d04b7eb8bf59d86e4b85aa" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="16" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    return DigitalSensor::isDetected();
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="acc9f482e72f42668ab100626ef0556a" cid="GNR003" type="generalization" name="" style-class="" creation-date="09/27/2022 20:19:50" from="8a60e06ccd4648e986edf6c47e5b9d77" to="aa81892e74a746b5a75c01ef08c0aa18">
+              <tagged-values>
+                <tagged-value id="tvfd563158599d49e987db97baf97c167b" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+            </item>
+            <item id="ccb727a882954c798335036f784fdcb7" cid="PROP004" type="property" name="yellowPin" style-class="" owner="e1278e03fe7c46e8ac516e15b60f5b07" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tv9647b57c5a894d13aad9547ff9e14eb3" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="yellowPin" />
+                <tagged-value id="tv030fc359f37345469dca1a5ff84352a1" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv3cbe21fe704c4996823a5933b8e09c1f" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                <tagged-value id="tvd7c8a7e7ea984887a641577443b7555e" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv6d75e3bbf2a24fc9964e672c7b175bd7" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="101" />
+                <tagged-value id="tv76432e7f21494e249b10d519bf701b7c" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="14" />
+                <tagged-value id="tv41769be61b2f44a984362ad4ebc7df60" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="316" />
+                <tagged-value id="tv390f5d0248a943478ab2d69910116ea0" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="73c31c801fa946138dd75fe5f8e6913b" cid="PROP002" type="property" name="buzzerPin" style-class="" owner="9f9794c08916487a81f741517200ee80" creation-date="09/27/2022 20:19:50" visibility="private">
+              <tagged-values>
+                <tagged-value id="tvc6800609f5ec44168b628f91b616900f" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="buzzerPin" />
+                <tagged-value id="tv4698681c217346e2b3104b453410ea3e" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv359c605ba05f4f0d9c1c9f6593c87497" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\Buzzer.hpp" />
+                <tagged-value id="tv75320f55febc4eb391e528f178f29275" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv11f638b1f87142808d08c69bbb6be9a5" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="67" />
+                <tagged-value id="tv1cb1d94dfd0740c6afac99ce70148cb2" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="14" />
+                <tagged-value id="tv59dc37f8a3274eb3ac3b3a89f9089dab" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="186" />
+                <tagged-value id="tvec6a8958ad4b4b75ad68becbaa5fe028" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:36" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="int" type-id="Cpp.int" />
+              <property />
+            </item>
+            <item id="e1278e03fe7c46e8ac516e15b60f5b07" cid="C004" type="class" name="TrafficLight" style-class="" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tv244c98bdb2244dc0bbce6464473a37f2" name="namespace" type="text" multiple="false" hidden="false" value="" />
+                <tagged-value id="tv9aa78f433b8243b382e3d3391846ce15" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="TrafficLight" />
+                <tagged-value id="tv79d1fdcb579e4c9db77a8a6f3cdf309c" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv20d79d24546241e18e383bca43d0742d" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                <tagged-value id="tv322c47ff2b9646898afec4628a3d5326" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv3e714ec728a74253b7833c77467bc12e" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="51" />
+                <tagged-value id="tvb28e5c9a0aac4fca828fc13a779019c1" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="257" />
+                <tagged-value id="tvec821ea79e004427a9f81d270fd821f6" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="316" />
+                <tagged-value id="tv41856706c2cc40bf8b1cd431e25e69ed" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <owned-items>
+                <owned-item ref="b43debd26e6b42e19caaa39cbaffcc25" />
+                <owned-item ref="ccb727a882954c798335036f784fdcb7" />
+                <owned-item ref="9b6ffda5a7d74301b68db05adc71a6a5" />
+              </owned-items>
+              <attributes>
+                <attribute id="a6d5bc764b26848038c8f30fd8afee6f4583" cid="PROP003" name="redPin" creation-date="09/27/2022 20:19:50" property-ref="b43debd26e6b42e19caaa39cbaffcc25" />
+                <attribute id="a912efe8c7bfd49c288631b587555946f583" cid="PROP004" name="yellowPin" creation-date="09/27/2022 20:19:50" property-ref="ccb727a882954c798335036f784fdcb7" />
+                <attribute id="adf5727f497b04a169bdde09fa7027931584" cid="PROP005" name="greenPin" creation-date="09/27/2022 20:19:50" property-ref="9b6ffda5a7d74301b68db05adc71a6a5" />
+              </attributes>
+              <operations>
+                <operation id="o16e01c26849e44fd9910e6eb5d7f47ec584" cid="OP024" name="TrafficLight" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <parameters>
+                    <parameter id="p4bed2b3b8e904c448b51303baf5a1811" name="redPin" type="int" type-id="Cpp.int" />
+                    <parameter id="p64f8bce7bd8b4f11ad5ad1cfc8a89a59" name="yellowPin" type="int" type-id="Cpp.int" />
+                    <parameter id="p703ce1afd6c6496abeaef7039242f4a3" name="greenPin" type="int" type-id="Cpp.int" />
+                  </parameters>
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv031de14025ab4ecea1e74f31eaedec8f" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="TrafficLight" />
+                    <tagged-value id="tvf96ad043c6164fb0996ecf89deab4643" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tv5e81c899d5e94af98648c51a0fab3538" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv0bc514d62a9441e98f33c767331f25d4" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="147" />
+                    <tagged-value id="tv4f7751a19309474ab97b06c76f035b04" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="54" />
+                  </tagged-values>
+                </operation>
+                <operation id="o12478008575441f89e819beec6604acf584" cid="OP025" name="TrafficLight" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <stereotypes>
+                    <stereotype>create</stereotype>
+                  </stereotypes>
+                  <tagged-values>
+                    <tagged-value id="tv180011d157f747248e0515abcf70d40e" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="TrafficLight" />
+                    <tagged-value id="tvba11fb857e8e42c7982ccf4600d9a8bd" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tv3b2f49e655db473aa5b78a3296a1b7f5" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv47fddedf38f4454991cf619144905d16" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="206" />
+                    <tagged-value id="tve5d0dfce30314048a2073ec8545c8d6d" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="16" />
+                  </tagged-values>
+                </operation>
+                <operation id="o2a2a16f53c0343c1be748cc3c185f80d584" cid="OP026" name="setGreen" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tve42f779ac58147d08ea4a21170b97f78" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="setGreen" />
+                    <tagged-value id="tvae8379035afc48899cca37bfa8bcf571" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tv5482846af39b48a698153c020e9e7ae1" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvae80a662e6344620826f5729c8fb59a4" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="227" />
+                    <tagged-value id="tv0cec934a62a9412b99c0073f6c298949" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="16" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;greenPin, HIGH);
+    digitalWrite(this-&gt;yellowPin, LOW);
+    digitalWrite(this-&gt;redPin, LOW);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="o488d5db312f64fb38de4261b51ed83b6585" cid="OP027" name="setYellow" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv78225bafd77c499a9eca253062767abe" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="setYellow" />
+                    <tagged-value id="tvf7b063e0c8f34751bb8e4c87511771e3" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tv449844ba6f9c429291ff07076ae8601d" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tv200e357e5d464000bad9b5e15ce7f273" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="248" />
+                    <tagged-value id="tv82aeec35ffda428393367acaf58094d2" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="17" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;greenPin, LOW);
+    digitalWrite(this-&gt;yellowPin, HIGH);
+    digitalWrite(this-&gt;redPin, LOW);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="o75df806f30f84d7688ea91507a05894c585" cid="OP028" name="setRed" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tvda4384cffd7f467e84617cb29a2b2e59" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="setRed" />
+                    <tagged-value id="tv8c5358ebe6be469dad0eef04506cde0f" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tvb5a4f123545e4cf89073f3526112dbd9" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvbbf297de19c040bc94441e4b681734cc" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="270" />
+                    <tagged-value id="tvc3cd70e864f94d16bb996810127df92b" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="14" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;greenPin, LOW);
+    digitalWrite(this-&gt;yellowPin, LOW);
+    digitalWrite(this-&gt;redPin, HIGH);
+</source-code>
+                  </source-codes>
+                </operation>
+                <operation id="o7cf4bfe0c83d439080597f1c10ce3ff4585" cid="OP029" name="shuttOff" creation-date="09/27/2022 20:19:50" type="" type-id="" visibility="public">
+                  <tagged-values>
+                    <tagged-value id="tv6ee89d04e0b840ecb953fe69902195e2" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="shuttOff" />
+                    <tagged-value id="tvba20f9c3751a4bebb95598e5f5c6fd7c" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\actuators\TrafficLight.hpp" />
+                    <tagged-value id="tvf2dcc403cac04f89b2b2ade634959015" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                    <tagged-value id="tvf7d935d7bfd5488382934b9f7773bb04" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="289" />
+                    <tagged-value id="tv3a2f6da109cd4ce4bf14040bc65161ca" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="16" />
+                  </tagged-values>
+                  <source-codes>
+                    <source-code language="Cpp">
+    digitalWrite(this-&gt;greenPin, LOW);
+    digitalWrite(this-&gt;yellowPin, LOW);
+    digitalWrite(this-&gt;redPin, LOW);
+</source-code>
+                  </source-codes>
+                </operation>
+              </operations>
+            </item>
+            <item id="0262d875329e46dea6f6483fd8113dd2" cid="REL003" type="relationship" name="" style-class="" creation-date="09/27/2022 20:19:50" from="4187a74ee8a1485e87474edb14b38f42" to="5eb9cd88bde04d1381847103c2f32813" visibility="package">
+              <tagged-values>
+                <tagged-value id="tvc4671810309246dabb03234ad8c83de7" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+              </tagged-values>
+              <relation from="4187a74ee8a1485e87474edb14b38f42" to="5eb9cd88bde04d1381847103c2f32813" derived="false">
+                <start-role id="umlar-a6543a15-8228-440f-bd61-cbd50bcd48ba" name="" navigability="" association-type="aggregation" visibility="private" />
+                <end-role id="umlar-380cef7c-da46-4a79-a6ed-fc149bf43f28" name="" navigability="" association-type="association" visibility="private" />
+              </relation>
+            </item>
+            <item id="7567bc2362354ad1aba8d037767654fe" cid="PROP006" type="property" name="DigitalSensor::DigitalSensor" style-class="" owner="b34a47560d4b421689bf1a09d16edb28" creation-date="09/27/2022 20:19:50" visibility="public">
+              <tagged-values>
+                <tagged-value id="tv10abe6a1b5ac466497af65a824b57b19" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="DigitalSensor::DigitalSensor" />
+                <tagged-value id="tv7d728f619fca47699acbf7bebce94d71" name="SourceCodeGroup" type="reference" multiple="false" hidden="true" ref="p06b34f53098f41f48f8cae059f3efae1_607200931" />
+                <tagged-value id="tv5f3ed5f677ad492c8934eabadfa3c026" name="SourceCodePath" type="text" multiple="false" hidden="true" value="E:\Downloads\iot-app-master\iot-app-master\sensormc\src\sensors\smokeSensor.hpp" />
+                <tagged-value id="tvba14ceba982e4393826edac8dc380c8a" name="SourceCodeLanguage" type="text" multiple="false" hidden="true" value="Cpp" />
+                <tagged-value id="tv3bf230ec1a1d46c0aa0884562afc3716" name="SourceCodePosition" type="text" multiple="false" hidden="true" value="144" />
+                <tagged-value id="tv12194485b24540fc9067156ae8c9eefd" name="SourceCodeLength" type="text" multiple="false" hidden="true" value="35" />
+                <tagged-value id="tveec30a4fd2544ce18a75e15feeac825a" name="SourceCodeFileSize" type="text" multiple="false" hidden="true" value="211" />
+                <tagged-value id="tv6671889aca4b49a7b20c4b7a083f0697" name="SourceCodeFileChangeDate" type="text" multiple="false" hidden="true" value="09/27/2022 18:19:37" />
+              </tagged-values>
+              <feature />
+              <structural-feature type="using" type-id="using" />
+              <property />
+            </item>
+          </abstract-items>
+          <sub-models />
+          <diagram type="uml-class" id="p7f050745a4a341c89b30f2131862e766_647184205" name="" order-index="1" uid="" auto-routed-paths="false" default-line-style="default" namespace="" view-location="0,90">
+            <style>
+              <background-color index="1" color="#FFFFFFFF" />
+              <background-color index="2" color="#FFFFFFFF" />
+              <background-type type="vertical-linear" />
+            </style>
+            <meta>
+              <authors>
+                <author>Kilian Kriesten</author>
+              </authors>
+              <description />
+              <creation-date>09/27/2022 20:19:50</creation-date>
+              <change-date>09/27/2022 20:19:50</change-date>
+              <revision-count>0</revision-count>
+              <version />
+            </meta>
+            <tagged-values>
+              <tagged-value id="tv1c0d7b55527040a1b4999ce803ca99ff" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+            </tagged-values>
+            <abstract-items />
+            <layer id="be340cc5f7b94faca1140da54d4e0a58" name="Default" visible="true" enabled="true" locked="false">
+              <item id="0262d875329e46dea6f6483fd8113dd2" iid="789e680c190e4017ab50a5c9007b5263" creation-date="09/27/2022 20:19:50" order-index="0" type="relation">
+                <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="800" y1="599" x2="862" y2="600" start-border-pos="0.470266982913017" end-border-pos="0.872448980808258" start-local-pos="363" end-local-pos="50" name-position="0,20">
+                  <points>
+                    <point x="800" y="599" />
+                    <point x="862" y="600" />
+                  </points>
+                </layout>
+                <relation from="4187a74ee8a1485e87474edb14b38f42" from-iid="79f11fb020a94c2b921ef03cae596b15" to="5eb9cd88bde04d1381847103c2f32813" to-iid="9cc6888f56674cf08f8139a6289599ca" />
+              </item>
+              <item id="8a60e06ccd4648e986edf6c47e5b9d77" iid="da5788230cc441c08534e7d3f7ecfd36" creation-date="09/27/2022 20:19:50" order-index="1" type="entity">
+                <layout ax="1157" ay="418" awidth="224" aheight="79" x="1157" y="418" width="224" height="79" />
+                <classifier />
+                <class />
+              </item>
+              <item id="2b0f3d553d7a4adcbfcf5e9ad959a5c1" iid="476abe61e1d3481888f1823e79cb287f" creation-date="09/27/2022 20:19:50" order-index="2" type="relation">
+                <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="442" y1="304" x2="310" y2="304" start-border-pos="0.95873786509037" end-border-pos="0.375" start-local-pos="68" end-local-pos="68" name-position="0,20">
+                  <points>
+                    <point x="442" y="304" />
+                    <point x="310" y="304" />
+                  </points>
+                </layout>
+                <relation from="4187a74ee8a1485e87474edb14b38f42" from-iid="79f11fb020a94c2b921ef03cae596b15" to="9f9794c08916487a81f741517200ee80" to-iid="89696d7c77bf4b699f056ddbeffecd9a" />
+              </item>
+              <item id="aa81892e74a746b5a75c01ef08c0aa18" iid="bc0841c9a1254455a4b7c617b1ae9f72" creation-date="09/27/2022 20:19:50" order-index="3" type="entity">
+                <layout ax="1008" ay="236" awidth="211" aheight="117" x="1008" y="236" width="211" height="117" />
+                <classifier />
+                <class />
+              </item>
+              <item id="acc9f482e72f42668ab100626ef0556a" iid="d629421e475f4dd9b5308f1d63ab9ed7" creation-date="09/27/2022 20:19:50" order-index="4" type="relation">
+                <layout line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1269" y1="418" x2="1157" y2="353" start-border-pos="0.125" end-border-pos="0.573459714651108" start-local-pos="75" end-local-pos="149" name-position="0,20">
+                  <points>
+                    <point x="1269" y="418" />
+                    <point x="1157" y="353" />
+                  </points>
+                </layout>
+                <relation from="8a60e06ccd4648e986edf6c47e5b9d77" from-iid="da5788230cc441c08534e7d3f7ecfd36" to="aa81892e74a746b5a75c01ef08c0aa18" to-iid="bc0841c9a1254455a4b7c617b1ae9f72" />
+              </item>
+              <item id="e1278e03fe7c46e8ac516e15b60f5b07" iid="6bb9f5252e964b01acce2b369111dab6" creation-date="09/27/2022 20:19:50" order-index="5" type="entity">
+                <layout ax="33.5" ay="418" awidth="342" aheight="230" x="33.5" y="418" width="342" height="230" />
+                <classifier />
+                <class />
+              </item>
+              <item id="21aea1f4418f45668e94f66e1ce68028" iid="452d928d5f1b468b8cb0287911037e8f" creation-date="09/27/2022 20:19:50" order-index="6" type="relation">
+                <layout line-style="perpendicular" start-auto-side="false" lock-start-point="true" lock-to-fields="false" auto-path="" x1="1094" y1="599" x2="1157" y2="599" start-border-pos="0.375" end-border-pos="0.931985296308994" start-local-pos="49" name-position="0,20">
+                  <points>
+                    <point x="1094" y="599" />
+                    <point x="1157" y="599" />
+                  </points>
+                </layout>
+                <relation from="5eb9cd88bde04d1381847103c2f32813" from-iid="9cc6888f56674cf08f8139a6289599ca" to="c73a70c16d5a4a9685cc058d6112f730" to-iid="269640340be242f6a12f363a73233493" />
+              </item>
+              <item id="b34a47560d4b421689bf1a09d16edb28" iid="15406d15030c457a8a6bfc5e8e70e4eb" creation-date="09/27/2022 20:19:50" order-index="7" type="entity">
+                <layout ax="866.5" ay="418" awidth="224" aheight="79" x="866.5" y="418" width="224" height="79" />
+                <classifier />
+                <class />
+              </item>
+              <item id="c73a70c16d5a4a9685cc058d6112f730" iid="269640340be242f6a12f363a73233493" creation-date="09/27/2022 20:19:50" order-index="8" type="entity">
+                <layout ax="1157" ay="562" awidth="240" aheight="136" x="1157" y="562" width="240" height="136" />
+                <classifier />
+                <class />
+              </item>
+              <item id="ba641a1ff95b444ebb0102c3197af247" iid="6405c3a2760847deadbd9fc4cf07ab98" creation-date="09/27/2022 20:19:50" order-index="9" type="relation">
+                <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="800" y1="458" x2="866" y2="458" start-border-pos="0.384405344724655" end-border-pos="0.8745" start-local-pos="222" end-local-pos="52.5" name-position="0,20">
+                  <points>
+                    <point x="800" y="458" />
+                    <point x="866" y="458" />
+                  </points>
+                </layout>
+                <relation from="4187a74ee8a1485e87474edb14b38f42" from-iid="79f11fb020a94c2b921ef03cae596b15" from-field="ocf9e58c2adaf42339f982e02c817c091575" to="b34a47560d4b421689bf1a09d16edb28" to-iid="15406d15030c457a8a6bfc5e8e70e4eb" />
+              </item>
+              <item id="5eb9cd88bde04d1381847103c2f32813" iid="9cc6888f56674cf08f8139a6289599ca" creation-date="09/27/2022 20:19:50" order-index="10" type="entity">
+                <layout ax="862.5" ay="550" awidth="232" aheight="98" x="862.5" y="550" width="232" height="98" />
+                <classifier />
+                <class />
+              </item>
+              <item id="ec46597f060a40d1ad656fdca685e09c" iid="6a5bd9a4b8544326bd93d164b0c1b4b2" creation-date="09/27/2022 20:19:50" order-index="11" type="relation">
+                <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="442" y1="533" x2="376" y2="533" start-border-pos="0.819781556725502" end-border-pos="0.375" start-local-pos="297" end-local-pos="115" name-position="0,20">
+                  <points>
+                    <point x="442" y="533" />
+                    <point x="376" y="533" />
+                  </points>
+                </layout>
+                <relation from="4187a74ee8a1485e87474edb14b38f42" from-iid="79f11fb020a94c2b921ef03cae596b15" from-field="of212f4237fe54e95b4785ad23a50d9f7575" to="e1278e03fe7c46e8ac516e15b60f5b07" to-iid="6bb9f5252e964b01acce2b369111dab6" />
+              </item>
+              <item id="4187a74ee8a1485e87474edb14b38f42" iid="79f11fb020a94c2b921ef03cae596b15" creation-date="09/27/2022 20:19:50" order-index="12" type="entity">
+                <layout ax="442" ay="236" awidth="358" aheight="412" x="442" y="236" width="358" height="412" />
+                <classifier />
+                <class />
+              </item>
+              <item id="9f9794c08916487a81f741517200ee80" iid="89696d7c77bf4b699f056ddbeffecd9a" creation-date="09/27/2022 20:19:50" order-index="13" type="entity">
+                <layout ax="99" ay="236" awidth="211" aheight="136" x="99" y="236" width="211" height="136" />
+                <classifier />
+                <class />
+              </item>
+              <item id="95027370fd1c4ed28075dedf01f0923d" iid="ac18b50d843e4798b29c710c70389540" creation-date="09/27/2022 20:19:50" order-index="14" type="relation">
+                <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="800" y1="533" x2="1269" y2="497" start-border-pos="0.430218446601942" end-border-pos="0.625" start-local-pos="331" end-local-pos="112" name-position="0,20">
+                  <points>
+                    <point x="800" y="533" />
+                    <point x="1269" y="497" />
+                  </points>
+                </layout>
+                <relation from="4187a74ee8a1485e87474edb14b38f42" from-iid="79f11fb020a94c2b921ef03cae596b15" to="8a60e06ccd4648e986edf6c47e5b9d77" to-iid="da5788230cc441c08534e7d3f7ecfd36" />
+              </item>
+              <item id="0ed32b5030454999a78ef58fd56aa9c0" iid="fa93a942152a478b95a344eb66fcacd5" creation-date="09/27/2022 20:19:50" order-index="15" type="relation">
+                <layout line-style="perpendicular" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="982" y1="418" x2="1091" y2="353" start-border-pos="0.128348216414452" end-border-pos="0.652251183986664" start-local-pos="115" end-local-pos="83" name-position="0,20">
+                  <points>
+                    <point x="982" y="418" />
+                    <point x="1091" y="353" />
+                  </points>
+                </layout>
+                <relation from="b34a47560d4b421689bf1a09d16edb28" from-iid="15406d15030c457a8a6bfc5e8e70e4eb" to="aa81892e74a746b5a75c01ef08c0aa18" to-iid="bc0841c9a1254455a4b7c617b1ae9f72" />
+              </item>
+            </layer>
+          </diagram>
+        </model>
+      </sub-models>
+      <diagram type="uml-package" id="p39e9637a463247f5b03e70c28c988912_347887175" name="Packages" order-index="1" uid="" auto-routed-paths="false" default-line-style="default" namespace="">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="vertical-linear" />
+        </style>
+        <meta>
+          <authors>
+            <author>Kilian Kriesten</author>
+          </authors>
+          <description />
+          <creation-date>09/27/2022 20:19:50</creation-date>
+          <change-date>09/27/2022 20:19:50</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <tagged-values>
+          <tagged-value id="tvaa5efad50ebc4030aea214d5c8bb6175" name="ReverseEngineered" type="text" multiple="false" hidden="true" value="" />
+        </tagged-values>
+        <abstract-items />
+        <layer id="36e6bd5a04f0479d9f0a8b653b96b2dc" name="Default" visible="true" enabled="true" locked="false">
+          <item id="10b81530ff5444d7b1a5f928ae83b58b" iid="040bfb0985b54c42bfba83662362532e" creation-date="09/27/2022 20:19:50" order-index="0" type="entity">
+            <layout ax="0" ay="0" awidth="84" aheight="56" x="0" y="0" width="84" height="56" expanded="0,0,84,56" collapsed="0,0,0,0" />
+            <package name-in-body="false" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>
