@@ -1,4 +1,4 @@
-#Sensor Subsystem
+# Sensor Subsystem
 The subsystem for recording the sensor values consists of a ESP32 microcontroller, a corresponding development board (ESP32-DevKit C V2) and  and a flame sensor, a gas, a smoke sensor and a water level sensor. In addition, a DHT-11 sensor records the room temperature and humidity. A traffic light module and an active buzzer are used as actuators.
 ## Getting Started
 To test and develop the source code, it is recommended to use the IDE [PlatformIO](https://platformio.org/). This also takes care of the dependency management. Once the IDE is installed, simply clone the repository and import the project.
