@@ -5,7 +5,7 @@ The [MQTT example](https://github.com/jreichwald/hsma_lecture_dbt1_code/tree/mai
 ## Getting Started
 To test and develop the source code, it is recommended to use the IDE [PlatformIO](https://platformio.org/). This also takes care of the dependency management. Once the IDE is installed, simply clone the repository and import the project.
 
-For the commissioning of the prototype, the WLAN and MQTT connection parameters must be entered under `src/config/secrets.sh`.
+For the commissioning of the prototype, the WLAN and MQTT connection parameters must be entered under `src/config/secrets.h` and `src/config/wlan.sh`.
 ## Wiring
 Several sensors and actuators were used.  These are from the 16 in 1 sensor kit from AZ-Delivery and the ELEGOO Upgraded 37 in 1 Sensor Modules Kit. The following figure shows the wiring.
 
